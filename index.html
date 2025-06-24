@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>これからの人生の転機を占う</title>
+  <meta name="viewport" content="width=375, initial-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #F7F7F7;
+      font-family: 'Noto Sans JP', sans-serif;
+      width: 375px;
+      min-height: 100vh;
+      margin: 0 auto;
+    }
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #f7f8fa 0%, #f3eaff 100%);
+      padding: 32px 16px 0 16px;
+    }
+    .active { display: flex !important; }
+    .card {
+      background: linear-gradient(135deg, #ffe6fa 0%, #d9f1ff 100%);
+      border-radius: 24px;
+      box-shadow: 0 6px 24px #e0e0f0aa;
+      padding: 36px 20px;
+      margin-bottom: 16px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      color: #555;
+    }
+    .btn, .choice {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 14px 0;
+      width: 90%;
+      max-width: 250px;
+      border-radius: 32px;
+      background: linear-gradient(90deg, #e3cfff 0%, #cff3ff 100%);
+      color: #3a1770;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 3px 10px #c0d3ff55;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.1em;
+    }
+    .btn:active, .choice:active { background: #e6e6ff; }
+    .choice { margin: 10px auto; }
+    .input-row {
+      margin: 18px 0;
+      text-align: center;
+    }
+    input, select {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #eee;
+      font-size: 16px;
+      width: 85%;
+      margin-top: 5px;
+    }
+    .keypad {
+      display: flex; flex-wrap: wrap;
+      gap: 8px; margin: 20px auto 10px;
+      justify-content: center;
+      max-width: 260px;
+    }
+    .keypad button {
+      width: 60px; height: 48px;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 20px;
+      border: 1px solid #dfdfef;
+      margin-bottom: 8px;
+    }
+    .step-indicator {
+      margin-bottom: 18px; color: #a9a2ca; font-size: 14px;
+      letter-spacing: 0.2em;
+    }
+    /* イメージに近いグラデ */
+    .gradient-text {
+      background: linear-gradient(90deg, #e3cfff 30%, #cff3ff 60%, #ffd0e6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    /* 結果ページ装飾 */
+    .result-card {
+      background: #fffbe5;
+      border-radius: 20px;
+      border: 2px solid #e9cd65;
+      padding: 24px 12px;
+      margin: 24px 0;
+      color: #7c6517;
+      font-weight: bold;
+      box-shadow: 0 4px 16px #faeaa855;
+      font-size: 18px;
+    }
+    /* メールアドレス入力ページ */
+    .mail-desc {
+      font-size: 15px; color: #5544aa; margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 画面1: スタート -->
+  <div id="screen-1" class="screen active">
+    <div class="card">
+      <div class="gradient-text">これからの人生の転機を</div>
+      <button id="longpress-btn" class="btn">占いをはじめる</button>
+      <div style="font-size:13px; color:#aaa; margin-top:12px;">※3秒長押しでスタート</div>
+    </div>
+  </div>
+
+  <!-- 画面1-10: 注意事項 -->
+  <div id="screen-1-10" class="screen">
+    <div class="card">
+      <div style="font-size:16px; margin-bottom:10px;">ご利用に際して</div>
+      <div style="font-size:13px; color:#7a6bb0;">
+        サービス利用規約、個人情報の取り扱いをご確認の上ご利用ください。
+      </div>
+      <button class="btn" onclick="goto('screen-1-2')">同意して進む</button>
+    </div>
+  </div>
+
+  <!-- 質問ステップ -->
+  <div id="screen-1-2" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 1/7</div>
+      <div>あなたの性別を教えてください</div>
+      <button class="choice" onclick="saveAndNext('gender', '男性')">男性</button>
+      <button class="choice" onclick="saveAndNext('gender', '女性')">女性</button>
+      <button class="choice" onclick="saveAndNext('gender', 'その他')">その他</button>
+    </div>
+  </div>
+  <div id="screen-1-3" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 2/7</div>
+      <div>あなたの年齢を教えてください</div>
+      <input id="age" type="number" min="0" max="120" placeholder="例：30" /><br>
+      <button class="btn" onclick="saveAndNext('age', document.getElementById('age').value)">送信</button>
+    </div>
+  </div>
+  <div id="screen-1-4" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 3/7</div>
+      <div>ご相談内容を選択してください</div>
+      <button class="choice" onclick="saveAndNext('topic', '恋愛')">恋愛</button>
+      <button class="choice" onclick="saveAndNext('topic', '仕事')">仕事</button>
+      <button class="choice" onclick="saveAndNext('topic', 'お金')">お金</button>
+      <button class="choice" onclick="saveAndNext('topic', '人間関係')">人間関係</button>
+    </div>
+  </div>
+  <div id="screen-1-5" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 4/7</div>
+      <div>占ってほしい内容を一言で</div>
+      <input id="question" type="text" maxlength="40" placeholder="例：好きな人との今後" /><br>
+      <button class="btn" onclick="saveAndNext('question', document.getElementById('question').value)">送信</button>
+    </div>
+  </div>
+  <div id="screen-1-6" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 5/7</div>
+      <div>生年月日を入力してください</div>
+      <input id="birthday" type="date" /><br>
+      <button class="btn" onclick="saveAndNext('birthday', document.getElementById('birthday').value)">送信</button>
+    </div>
+  </div>
+  <div id="screen-1-7" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 6/7</div>
+      <div>ご自身の下の名前を入力してください</div>
+      <input id="name" type="text" maxlength="12" placeholder="例：さくら" /><br>
+      <button class="btn" onclick="saveAndNext('name', document.getElementById('name').value)">送信</button>
+    </div>
+  </div>
+  <div id="screen-1-8" class="screen">
+    <div class="card">
+      <div class="step-indicator">STEP 7/7</div>
+      <div>メールアドレスをご入力ください</div>
+      <div class="mail-desc">占い結果をメールでお送りします</div>
+      <input id="email" type="email" maxlength="60" placeholder="sample@email.com" /><br>
+      <button class="btn" onclick="saveAndNext('email', document.getElementById('email').value)">送信</button>
+    </div>
+  </div>
+
+  <!-- 仮：結果・送信画面 -->
+  <div id="screen-1-9" class="screen">
+    <div class="card">
+      <div class="gradient-text">ご入力ありがとうございました！</div>
+      <div class="result-card">
+        入力内容をメールで送信しました。<br>
+        占い結果は追ってお送りします。
+      </div>
+      <button class="btn" onclick="goto('screen-1')">最初に戻る</button>
+    </div>
+  </div>
+
+  <script>
+    // SPA遷移＆データ保存
+    let answers = {};
+
+    function goto(id) {
+      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function saveAndNext(key, value) {
+      if (typeof value === "string" && value.trim() === "") return alert("未入力です");
+      answers[key] = value;
+      switch (key) {
+        case "gender": goto("screen-1-3"); break;
+        case "age": goto("screen-1-4"); break;
+        case "topic": goto("screen-1-5"); break;
+        case "question": goto("screen-1-6"); break;
+        case "birthday": goto("screen-1-7"); break;
+        case "name": goto("screen-1-8"); break;
+        case "email":
+          // 仮：メール送信
+          sendMail();
+          goto("screen-1-9");
+          break;
+      }
+    }
+
+    // 長押し判定
+    let longpressTimer = null;
+    document.getElementById('longpress-btn').addEventListener('touchstart', function() {
+      longpressTimer = setTimeout(() => goto('screen-1-10'), 3000);
+    });
+    document.getElementById('longpress-btn').addEventListener('touchend', function() {
+      clearTimeout(longpressTimer);
+    });
+    document.getElementById('longpress-btn').addEventListener('mousedown', function() {
+      longpressTimer = setTimeout(() => goto('screen-1-10'), 3000);
+    });
+    document.getElementById('longpress-btn').addEventListener('mouseup', function() {
+      clearTimeout(longpressTimer);
+    });
+    document.getElementById('longpress-btn').addEventListener('mouseleave', function() {
+      clearTimeout(longpressTimer);
+    });
+
+    // 仮メール送信
+    function sendMail() {
+      const mailto = "mailto:" + encodeURIComponent(answers.email)
+        + "?subject=" + encodeURIComponent("占い申込内容")
+        + "&body=" + encodeURIComponent(
+            "■性別：" + answers.gender +
+            "\n■年齢：" + answers.age +
+            "\n■相談内容：" + answers.topic +
+            "\n■占ってほしいこと：" + answers.question +
+            "\n■生年月日：" + answers.birthday +
+            "\n■名前：" + answers.name +
+            "\n■メール：" + answers.email
+          );
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
