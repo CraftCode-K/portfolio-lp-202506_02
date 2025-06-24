@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=375,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <title>オーラ鑑定LP - 完成形</title>
+  <title>オーラ鑑定LP</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0; padding: 0;
-      width: 100vw;
-      background: #eaf2ff;
+      width: 100vw; height: 100vh;
       font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-      overscroll-behavior: none;
+      background: #eaf2ff;
+      overflow: hidden;
       touch-action: manipulation;
     }
     body {
-      min-height: 100dvh;
       position: relative;
-      overflow: hidden;
+      min-height: 100vh;
+      width: 100vw;
     }
+    /* 背景は100%縦長・中央固定 */
     .bg-img {
       position: fixed;
-      inset: 0;
-      width: 100vw; height: 100vh;
-      object-fit: cover;
+      top: 0; left: 50%;
+      width: auto;
+      height: 100vh;
+      min-width: 100vw;
+      transform: translateX(-50%);
       z-index: 0;
       pointer-events: none;
     }
@@ -60,32 +62,21 @@
       z-index: 1;
       pointer-events: auto;
       user-select: none;
-      touch-action: manipulation;
       display: block;
-    }
-    .button-text {
-      width: 95%;
-      max-width: 269px;
-      z-index: 4;
-      pointer-events: none;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 8%;
+      touch-action: manipulation;
     }
     .gage-area {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 65%;
+      top: 5.5%;  /* パワーストーン上辺から少し下げる（赤線位置）※調整可 */
+      width: 70%;
       max-width: 220px;
       z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       pointer-events: none;
-      /* ▼ button-textの真上にぴったり重なるように調整 */
-      bottom: 19%; /* この値が一番重要。button-textより少し上。調整可 */
     }
     .stone-gage-bar {
       width: 100%;
@@ -123,8 +114,7 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: env(safe-area-inset-bottom,0); /* iOS対応 */
-      margin-bottom: 4px; /* さらにギリギリにしたい場合は値を0に */
+      bottom: calc(env(safe-area-inset-bottom,0) + 2px); /* iPhone下部にもギリギリ */
       background: none;
       border: none;
       padding: 0;
@@ -161,10 +151,7 @@
       <!-- パワーストーン画像自体がボタン -->
       <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
 
-      <!-- テキスト画像（「パワーストーンを押してください」） -->
-      <img class="button-text" src="images/p1/button_text.png" alt="パワーストーンを押してください" draggable="false">
-
-      <!-- ゲージ（テキスト直上に絶対配置） -->
+      <!-- ゲージ（パワーストーン上部に重ねる） -->
       <div class="gage-area">
         <div class="stone-gage-bar">
           <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
