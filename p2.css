@@ -3,16 +3,14 @@ html, body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background: #fff;
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  background: #fff;
   overflow: hidden;
 }
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
 }
 
 .sp-frame {
@@ -26,19 +24,18 @@ body {
   z-index: 1;
 }
 
-/* ===== 上部背景グラデ画像 ===== */
+/* 背景画像 */
 .bg-img {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   width: 375px;
-  height: 180px;
+  height: 204px;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
 }
 
-/* ===== お試し鑑定ロゴ（try_judge.png） ===== */
+/* ロゴ */
 .logo-area {
   width: 100%;
   display: flex;
@@ -48,32 +45,33 @@ body {
   z-index: 2;
 }
 .try-judge-img {
-  width: 210px;
-  height: auto;
-  margin-top: 12px;
+  width: 196px;
+  height: 38px;
+  margin-top: 26px;
   display: block;
   object-fit: contain;
   user-select: none;
   pointer-events: none;
 }
 
-/* ===== ステージ（progress）画像 ===== */
+/* ステージ画像 */
 .stage-img {
-  width: 268px;
-  height: auto;
+  width: 292px;
+  height: 51px;
   display: block;
-  margin: 8px auto 0 auto;
+  margin: 0 auto;
+  margin-top: 10px;
   user-select: none;
   pointer-events: none;
   z-index: 2;
   position: relative;
 }
 
-/* ===== 質問タイトル画像 ===== */
+/* 質問タイトル画像 */
 .question-img {
   width: 358px;
-  height: auto;
-  margin: 18px auto 0 auto;
+  height: 92px;
+  margin: 14px auto 0 auto;
   display: block;
   z-index: 2;
   position: relative;
@@ -81,13 +79,14 @@ body {
   user-select: none;
 }
 
-/* ===== 質問ボックス全体 ===== */
+/* 質問ボックス */
 .question-box {
   width: 358px;
   background: #f6f6f6;
   border-radius: 0 0 16px 16px;
-  padding: 20px 0 16px 0;
-  margin: 18px auto 0 auto;
+  padding: 10px 0 14px 0;
+  margin: 0 auto;
+  margin-top: -18px;
   position: relative;
   box-sizing: border-box;
   text-align: center;
@@ -95,22 +94,26 @@ body {
   color: #222;
   z-index: 2;
   font-weight: 500;
-  min-height: 65px;
+  min-height: 62px;
 }
 
-/* ===== 生年月日入力 ===== */
+/* 生年月日入力 */
+#birthdayForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 34px;
+}
 .birthday-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 12px;
-  gap: 10px;
+  gap: 8px;
 }
-
 .birthday-input {
-  width: 74px;
-  height: 42px;
+  width: 68px;
+  height: 40px;
   border: 1.5px solid #bbb;
   border-radius: 8px;
   font-size: 22px;
@@ -129,19 +132,19 @@ body {
   margin: 0 2px;
 }
 
-/* ===== 決定ボタン（stone_decide.pngの円） ===== */
+/* 決定ボタン */
 .decide-area {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  margin-top: 38px;
   width: 100%;
+  position: relative;
 }
 .decide-btn-img {
-  width: 210px;
-  height: 210px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -153,16 +156,16 @@ body {
 .decide-btn-img:active {
   filter: brightness(0.92);
 }
-
-/* ボタンラベル（画像内テキスト）中央配置用 */
 .decide-btn-label {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -52%);
+  transform: translate(-50%, -54%);
   font-size: 36px;
   font-weight: 700;
   color: #222;
   pointer-events: none;
   user-select: none;
+  width: 120px;
+  text-align: center;
 }
