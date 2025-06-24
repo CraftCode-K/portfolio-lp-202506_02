@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>p1_完成形</title>
+  <meta name="viewport" content="width=375,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>オーラ鑑定LP</title>
   <style>
     html, body {
       height: 100%;
@@ -11,6 +11,8 @@
       width: 100vw;
       background: #eaf2ff;
       font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+      overscroll-behavior: none;
+      touch-action: manipulation;
     }
     body {
       min-height: 100dvh;
@@ -35,32 +37,75 @@
       z-index: 1;
     }
     .head-title {
-      width: 91vw;
-      max-width: 417px;
+      width: 90vw;
+      max-width: 420px;
       margin-top: 28px;
       margin-bottom: 2vh;
       z-index: 2;
+      pointer-events: none;
+      user-select: none;
     }
     .stone-area {
-      margin-top: 7vh;
-      width: 79vw;
+      margin-top: 8vh;
+      width: 80vw;
       max-width: 340px;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      user-select: none;
+    }
+    .gage-area {
+      position: absolute;
+      top: 6%; /* パワーストーン画像の上部付近 */
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 70%;
+      max-width: 266px;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+    .stone-gage-bar {
+      position: relative;
+      width: 100%;
+      height: 16px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.10);
+    }
+    .gage-img {
+      width: 100%; height: 16px;
+      object-fit: cover;
+      position: absolute;
+      left: 0; top: 0;
+      transition: clip-path 0.15s;
+      z-index: 2;
+      pointer-events: none;
+      clip-path: inset(0 100% 0 0); /* 初期幅ゼロ */
+    }
+    .gage-img.show {
+      clip-path: inset(0 0 0 0);
+      transition: clip-path 0.2s;
+    }
+    .stone-btn-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 10;
+      background: rgba(0,0,0,0);
+      cursor: pointer;
+      border: none;
+      outline: none;
+      touch-action: manipulation;
     }
     .stone-img {
       width: 100%; max-width: 340px; z-index: 1;
       pointer-events: auto;
-    }
-    .stone-gage {
-      position: absolute;
-      bottom: 12%; left: 50%; transform: translateX(-50%);
-      width: 75%; max-width: 266px;
-      z-index: 2;
-      pointer-events: none;
+      user-select: none;
+      touch-action: manipulation;
     }
     .help-btn {
       position: fixed;
@@ -76,14 +121,20 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 8px rgba(80,80,80,0.10);
+      touch-action: manipulation;
     }
     .help-btn img {
       width: 100%; height: 100%;
       display: block;
     }
-    @media (max-width: 480px) {
-      .head-title { width: 97vw; }
-      .stone-area { width: 97vw; }
+    /* スマホ縦レイアウトのみ意識。PCレイアウトや回転は考慮なし */
+    @media (min-width: 481px) {
+      body, html {
+        min-width: 375px;
+        max-width: 430px;
+        margin: 0 auto;
+      }
+      .container { min-width: 375px; max-width: 430px; }
     }
   </style>
 </head>
@@ -97,8 +148,15 @@
 
     <!-- パワーストーンエリア -->
     <div class="stone-area">
-      <img class="stone-img" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
-      <img class="stone-gage" src="images/p1/stone_gage.png" alt="パワーストーンを押してください" draggable="false">
+      <!-- ゲージ -->
+      <div class="gage-area">
+        <div class="stone-gage-bar">
+          <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
+        </div>
+      </div>
+      <!-- パワーストーン画像自体がボタン -->
+      <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
+      <button class="stone-btn-overlay" id="stoneBtn" aria-label="パワーストーンを長押ししてください"></button>
     </div>
   </div>
 
@@ -106,5 +164,65 @@
   <button class="help-btn" onclick="alert('ヘルプ画面（仮）')">
     <img src="images/p1/help_btn.png" alt="ヘルプ">
   </button>
+
+  <script>
+    // ゲージアニメーション
+    const stoneBtn = document.getElementById('stoneBtn');
+    const gageImg = document.getElementById('gageImg');
+    let progress = 0;
+    let interval = null;
+    const duration = 3000; // 3秒
+
+    function setGage(percent) {
+      gageImg.style.clipPath = `inset(0 ${(1 - percent) * 100}% 0 0)`;
+    }
+
+    function startGage() {
+      gageImg.classList.add('show');
+      progress = 0;
+      setGage(0);
+      const start = Date.now();
+      interval = setInterval(() => {
+        progress = (Date.now() - start) / duration;
+        if (progress >= 1) {
+          setGage(1);
+          clearInterval(interval);
+          setTimeout(() => {
+            // 次ページ遷移
+            window.location.href = "next.html"; // 遷移先は必要に応じて修正
+          }, 150);
+        } else {
+          setGage(progress);
+        }
+      }, 16);
+    }
+
+    function cancelGage() {
+      clearInterval(interval);
+      setGage(0);
+      gageImg.classList.remove('show');
+    }
+
+    // タッチ・マウス両対応（スマホ重視）
+    stoneBtn.addEventListener('touchstart', e => {
+      e.preventDefault();
+      startGage();
+    });
+    stoneBtn.addEventListener('mousedown', e => {
+      e.preventDefault();
+      startGage();
+    });
+
+    ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(ev => {
+      stoneBtn.addEventListener(ev, e => {
+        cancelGage();
+      });
+    });
+
+    // 画像のドラッグ禁止
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
 </body>
 </html>
