@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>お試し鑑定｜生年月日入力</title>
+  <title>お試し鑑定 | 生年月日入力</title>
   <link rel="stylesheet" href="p2.css">
 </head>
 <body>
   <div class="sp-frame">
-    <!-- 背景画像 -->
-    <img src="images/p2/bg_2.png" alt="背景" class="bg-img">
-
-    <!-- ロゴ -->
+    <!-- 背景 -->
+    <img class="bg-img" src="images/p2/bg_2.png" alt="背景" draggable="false">
+    <!-- お試し鑑定ロゴ -->
     <div class="logo-area">
-      <img src="images/p2/try_judge.png" alt="お試し鑑定ロゴ" class="try-judge-img">
+      <img class="try-judge-img" src="images/p2/try_judge.png" alt="お試し鑑定ロゴ" draggable="false">
     </div>
-
     <!-- ステップバー -->
     <div class="stage-area">
-      <img src="images/p2/stage1.png" alt="ステージ進捗" class="stage-img">
+      <img class="stage-img" src="images/p2/stage1.png" alt="ステージ1" draggable="false">
     </div>
-
-    <!-- 吹き出し質問 -->
+    <!-- 質問バナー -->
     <div class="question-area">
-      <img src="images/p2/question1.png" alt="より正確に占うために簡単な質問をします" class="question-img">
+      <img class="question-img" src="images/p2/question1.png" alt="より正確に占うために簡単な質問をします" draggable="false">
     </div>
-
     <!-- 生年月日入力フォーム -->
     <form id="birthdayForm" autocomplete="off">
       <div class="birthday-fields">
@@ -36,7 +32,6 @@
         <input type="number" id="day" name="day" class="birth-input" value="1" min="1" max="31" required>
         <span class="birth-label">日</span>
       </div>
-      <!-- 「決定」ボタン画像だけ、テキスト重ねない -->
       <button type="submit" class="decide-btn" aria-label="決定">
         <img src="images/p2/stone_decide.png" alt="決定">
       </button>
