@@ -1,35 +1,35 @@
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  margin: 0; padding: 0;
+  width: 100vw; height: 100vh;
   background: #fff;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   overflow: hidden;
 }
 body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
-
 .sp-frame {
   position: relative;
   width: 375px;
   height: 812px;
-  background: #fff;
-  border-radius: 16px;
+  background: transparent;
   overflow: hidden;
+  border-radius: 16px;
   box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 背景画像 */
 .bg-img {
   position: absolute;
   left: 0; top: 0;
-  width: 375px;
-  height: 204px;
+  width: 100%; height: 100%;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -40,130 +40,108 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;     /* 上端揃えたい場合はflex-start */
+  align-items: flex-start;
   position: relative;
   z-index: 2;
 }
 .try-judge-img {
   width: 196px;
-  height: auto;
+  height: 38px;
   margin-top: 26px;
   display: block;
+  object-fit: contain;
   user-select: none;
+  pointer-events: none;
 }
 
-/* ステージ画像 */
+/* ステップバー */
+.stage-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  z-index: 2;
+}
 .stage-img {
   width: 292px;
   height: 51px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
+  object-fit: contain;
   user-select: none;
   pointer-events: none;
-  z-index: 2;
-  position: relative;
+  display: block;
 }
 
-/* 質問タイトル画像 */
+/* 吹き出し質問 */
+.question-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  z-index: 2;
+}
 .question-img {
   width: 358px;
   height: 92px;
-  margin: 14px auto 0 auto;
-  display: block;
-  z-index: 2;
-  position: relative;
-  pointer-events: none;
+  object-fit: contain;
   user-select: none;
-}
-
-/* 質問ボックス */
-.question-box {
-  width: 358px;
-  background: #f6f6f6;
-  border-radius: 0 0 16px 16px;
-  padding: 10px 0 14px 0;
-  margin: 0 auto;
-  margin-top: -18px;
-  position: relative;
-  box-sizing: border-box;
-  text-align: center;
-  font-size: 22px;
-  color: #222;
-  z-index: 2;
-  font-weight: 500;
-  min-height: 62px;
+  pointer-events: none;
+  display: block;
 }
 
 /* 生年月日入力 */
-#birthdayForm {
+form#birthdayForm {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 34px;
+  z-index: 2;
 }
-.birthday-row {
+.birthday-fields {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
-.birthday-input {
-  width: 68px;
-  height: 40px;
-  border: 1.5px solid #bbb;
+.birth-input {
+  width: 74px;
+  height: 42px;
+  margin: 0 4px;
+  border: 1.5px solid #ccc;
   border-radius: 8px;
   font-size: 22px;
-  padding: 0 8px;
-  box-sizing: border-box;
   text-align: center;
   background: #fff;
   outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  margin: 0 2px;
+  box-sizing: border-box;
 }
-.birthday-label {
-  font-size: 18px;
-  color: #222;
-  margin: 0 2px;
+.birth-label {
+  font-size: 20px;
+  margin: 0 4px 0 2px;
 }
 
 /* 決定ボタン */
-.decide-area {
+.decide-btn {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 38px;
-  width: 100%;
-  position: relative;
-}
-.decide-btn-img {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0 auto;
+  cursor: pointer;
   width: 170px;
   height: 170px;
-  object-fit: contain;
+  transition: opacity 0.15s;
+}
+.decide-btn img {
+  width: 170px;
+  height: 170px;
   display: block;
-  margin: 0 auto;
   user-select: none;
-  pointer-events: auto;
-  cursor: pointer;
-  transition: filter 0.15s;
-}
-.decide-btn-img:active {
-  filter: brightness(0.92);
-}
-.decide-btn-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -54%);
-  font-size: 36px;
-  font-weight: 700;
-  color: #222;
   pointer-events: none;
-  user-select: none;
-  width: 120px;
-  text-align: center;
+}
+.decide-btn:active {
+  opacity: 0.7;
 }
