@@ -59,17 +59,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 12px;     /* お好みで調整 */
-  margin-bottom: 12px;  /* お好みで調整 */
+  margin-top: 8px; /* 調整OK */
+  margin-bottom: 12px;
+  /* height, overflowは書かない！ */
 }
 .stage-img {
   width: 292px;
-  height: 51px;
-  object-fit: contain;      /* 切れ防止 */
+  height: auto;       /* ここもauto */
+  object-fit: contain;
   display: block;
-  user-select: none;
-  pointer-events: none;
 }
+
 
 /* 質問バナー */
 .question-area {
