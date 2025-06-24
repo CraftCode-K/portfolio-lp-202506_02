@@ -40,18 +40,16 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;     /* 上端揃えたい場合はflex-start */
   position: relative;
   z-index: 2;
 }
 .try-judge-img {
   width: 196px;
-  height: 38px;
+  height: auto;
   margin-top: 26px;
   display: block;
-  object-fit: contain;
   user-select: none;
-  pointer-events: none;
 }
 
 /* ステージ画像 */
