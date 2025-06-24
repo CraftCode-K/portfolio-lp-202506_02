@@ -61,7 +61,7 @@ body {
 .gage-area {
   position: absolute;
   left: 50%;
-  top: 50px; /* パワーストーンのちょうど上部（微調整OK） */
+  top: 30px; /* パワーストーンのちょうど上部（微調整OK） */
   transform: translateX(-50%);
   width: 226px;
   height: 50px;
