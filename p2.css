@@ -1,8 +1,8 @@
 html, body {
   margin: 0; padding: 0;
   width: 100vw; height: 100vh;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   background: #fff;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   overflow: hidden;
 }
 body {
@@ -11,7 +11,6 @@ body {
   justify-content: center;
   width: 100vw; height: 100vh;
 }
-
 .sp-frame {
   position: relative;
   width: 375px;
@@ -20,71 +19,50 @@ body {
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
-  z-index: 1;
 }
 
+/* 背景 */
 .bg-img {
   position: absolute;
   left: 0; top: 0;
   width: 375px; height: 812px;
   object-fit: cover;
   z-index: 0;
-  pointer-events: none;
 }
 
-.header-wave {
+/* タイトル画像（グラデ含む最上部） */
+.title-img {
   position: absolute;
   left: 0; top: 0;
-  width: 375px; height: 140px;
+  width: 375px; height: 108px;
   z-index: 1;
   object-fit: cover;
   pointer-events: none;
 }
 
-.try-title {
+/* 進行状況バー（5玉+三角） */
+.progress-img {
   position: absolute;
-  left: 24px; top: 38px;
-  width: 196px; height: 38px;
+  left: 38px; top: 72px;
+  width: 300px; height: 51px;
   z-index: 2;
   object-fit: contain;
-  pointer-events: none;
-  opacity: 0; /* タイトル画像不要な場合は非表示 */
 }
 
-.stage-bar {
+/* 設問画像（「より正確に…」含む） */
+.question-img {
   position: absolute;
-  left: 35px; top: 94px;
-  width: 292px; height: 51px;
-  z-index: 2;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.question-box {
-  position: absolute;
-  left: 19px; top: 160px;
+  left: 19px; top: 140px;
   width: 338px; height: 92px;
   z-index: 3;
   object-fit: contain;
-  pointer-events: none;
-}
-.question-text {
-  position: absolute;
-  left: 0; right: 0; top: 188px;
-  width: 100%;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.2;
-  z-index: 4;
-  color: #222;
-  letter-spacing: 0.02em;
-  pointer-events: none;
 }
 
-.birth-form {
+/* 生年月日入力欄 */
+.form-area {
   position: absolute;
-  left: 0; right: 0; top: 302px;
+  left: 0; right: 0;
+  top: 280px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -92,37 +70,42 @@ body {
   z-index: 10;
 }
 
-.birth-row {
+.birth-inputs {
+  width: 320px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  align-items: center;
+  gap: 10px;
 }
 
-.input-box {
-  width: 70px;
+.birth-inputs input {
+  width: 72px;
   height: 48px;
-  border: 2px solid #bdbdbd;
+  border: 2px solid #c8c8c8;
   border-radius: 10px;
   background: #fff;
   font-size: 22px;
   text-align: center;
   outline: none;
+  box-sizing: border-box;
   margin: 0 2px;
   appearance: none;
-  box-sizing: border-box;
-  transition: border 0.18s;
+  -moz-appearance: textfield;
 }
-.input-box:focus {
-  border: 2px solid #57bbde;
+.birth-inputs input:focus {
+  border: 2px solid #58b6da;
 }
-
-.unit {
+.birth-inputs .unit {
   font-size: 18px;
   color: #444;
-  margin: 0 4px;
+}
+
+.error-message {
+  color: #e40000;
+  font-size: 16px;
+  text-align: center;
+  min-height: 24px;
+  margin: 10px 0 0 0;
 }
 
 .decide-btn {
@@ -131,36 +114,12 @@ body {
   border: none;
   padding: 0;
   width: 170px; height: 170px;
-  position: relative;
+  display: block;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  outline: none;
 }
-
-.decide-img {
-  width: 170px;
-  height: 170px;
+.decide-btn img {
+  width: 170px; height: 170px;
   object-fit: contain;
-  position: absolute;
-  left: 0; top: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.decide-text {
-  position: relative;
-  z-index: 2;
-  font-size: 36px;
-  font-weight: 500;
-  color: #222;
-  pointer-events: none;
-  text-align: center;
-}
-
-.error-message {
-  color: #e40000;
-  font-size: 16px;
-  text-align: center;
-  min-height: 24px;
-  margin-top: 8px;
+  display: block;
 }
