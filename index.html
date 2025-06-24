@@ -50,37 +50,50 @@
       max-width: 340px;
       position: relative;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
       user-select: none;
     }
     .stone-img {
-      width: 100%; max-width: 340px; z-index: 1;
+      width: 100%;
+      max-width: 340px;
+      z-index: 1;
       pointer-events: auto;
       user-select: none;
       touch-action: manipulation;
+      display: block;
+    }
+    .button-text {
+      width: 95%;
+      max-width: 269px;
+      z-index: 4;
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 8%;
     }
     .gage-area {
       position: absolute;
-      top: 58%; /* ストーン画像の中央よりやや下、「押してください」テキスト直上 */
       left: 50%;
-      transform: translate(-50%, 0);
-      width: 70%;
-      max-width: 266px;
+      transform: translateX(-50%);
+      width: 65%;
+      max-width: 220px;
       z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       pointer-events: none;
+      /* ▼ button-textの真上にぴったり重なるように調整 */
+      bottom: 19%; /* この値が一番重要。button-textより少し上。調整可 */
     }
     .stone-gage-bar {
-      position: relative;
       width: 100%;
       height: 16px;
       overflow: hidden;
       border-radius: 8px;
       background: rgba(0,0,0,0.08);
+      position: relative;
     }
     .gage-img {
       width: 100%; height: 16px;
@@ -96,14 +109,6 @@
       clip-path: inset(0 0 0 0);
       transition: clip-path 0.2s;
     }
-    .button-text {
-      margin-top: 68%; /* パワーストーン画像内の下部に重なるよう調整 */
-      width: 95%; max-width: 269px;
-      z-index: 4;
-      pointer-events: none;
-      position: absolute;
-      top: 70%; left: 50%; transform: translate(-50%, 0);
-    }
     .stone-btn-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -118,7 +123,8 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: max(3vh, 20px);
+      bottom: env(safe-area-inset-bottom,0); /* iOS対応 */
+      margin-bottom: 4px; /* さらにギリギリにしたい場合は値を0に */
       background: none;
       border: none;
       padding: 0;
@@ -155,15 +161,15 @@
       <!-- パワーストーン画像自体がボタン -->
       <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
 
-      <!-- ゲージ（パワーストーン内やや下に配置） -->
+      <!-- テキスト画像（「パワーストーンを押してください」） -->
+      <img class="button-text" src="images/p1/button_text.png" alt="パワーストーンを押してください" draggable="false">
+
+      <!-- ゲージ（テキスト直上に絶対配置） -->
       <div class="gage-area">
         <div class="stone-gage-bar">
           <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
         </div>
       </div>
-      <!-- テキスト画像（「パワーストーンを押してください」） -->
-      <img class="button-text" src="images/p1/button_text.png" alt="パワーストーンを押してください" draggable="false">
-
       <!-- ストーンの押下領域 -->
       <button class="stone-btn-overlay" id="stoneBtn" aria-label="パワーストーンを長押ししてください"></button>
     </div>
@@ -197,7 +203,6 @@
           setGage(1);
           clearInterval(interval);
           setTimeout(() => {
-            // 次ページ遷移（必要に応じて変更）
             window.location.href = "next.html";
           }, 150);
         } else {
