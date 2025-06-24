@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>お試し鑑定 生年月日入力</title>
+  <link rel="stylesheet" href="p2.css">
+</head>
+<body>
+  <div class="sp-frame">
+    <img class="bg-img" src="images/p2/bg_2.png" alt="背景">
+    <img class="header-wave" src="images/p2/try_judge.png" alt="上部グラデ">
+    <img class="try-title" src="images/p2/try_judge.png" alt="お試し鑑定タイトル">
+    <img class="stage-bar" src="images/p2/stage1.png" alt="ステップ進行バー">
+
+    <img class="question-box" src="images/p2/question1.png" alt="設問背景">
+    <div class="question-text">より正確に占うために<br>簡単な質問をします</div>
+
+    <form class="birth-form" id="birthForm" autocomplete="off">
+      <div class="birth-row">
+        <input type="number" class="input-box" id="year" name="year" min="1900" max="2099" value="1980" inputmode="numeric" required>
+        <span class="unit">年</span>
+        <input type="number" class="input-box" id="month" name="month" min="1" max="12" value="1" inputmode="numeric" required>
+        <span class="unit">月</span>
+        <input type="number" class="input-box" id="day" name="day" min="1" max="31" value="1" inputmode="numeric" required>
+        <span class="unit">日</span>
+      </div>
+      <div class="error-message" id="errorMessage"></div>
+      <button type="submit" class="decide-btn" id="decideBtn">
+        <img src="images/p2/stone_decide.png" alt="決定" class="decide-img">
+        <span class="decide-text">決定</span>
+      </button>
+    </form>
+  </div>
+  <script src="p2.js"></script>
+</body>
+</html>
