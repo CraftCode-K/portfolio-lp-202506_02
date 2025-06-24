@@ -18,14 +18,20 @@
       min-height: 100vh;
       width: 100vw;
     }
+    /* ★ 背景は画面中央に縦長でピッタリ固定！ */
     .bg-img {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
+      top: 50%;
+      left: 50%;
       height: 100vh;
-      object-fit: cover;  /* coverでもcontainでも可。今回はcover推奨 */
+      width: auto;
+      min-width: 100vw;
+      min-height: 100vh;
+      transform: translate(-50%, -50%);
       z-index: 0;
       pointer-events: none;
+      object-fit: cover;
+      background: #eaf2ff;
     }
     .container {
       position: relative;
@@ -45,8 +51,8 @@
       user-select: none;
     }
     .stone-area {
-      margin-top: 1vh;
-      margin-bottom: 16vh; 
+      margin-top: 2vh;        /* ← 小さくして上へ */
+      margin-bottom: 16vh;    /* ヘルプと重ならない余白 */
       width: 80vw;
       max-width: 340px;
       position: relative;
@@ -68,7 +74,7 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 15%;  /* パワーストーン上辺から少し下げる（赤線位置）※調整可 */
+      top: 5.5%;  /* ← パワーストーン上辺からの距離。赤線位置に微調整OK */
       width: 70%;
       max-width: 220px;
       z-index: 3;
@@ -78,8 +84,8 @@
       pointer-events: none;
     }
     .stone-gage-bar {
-      width: 130%;
-      height: 32px;
+      width: 130%;    /* ゲージ横幅（必要なら100%へ） */
+      height: 16px;   /* ゲージ縦幅 */
       overflow: hidden;
       border-radius: 8px;
       background: rgba(0,0,0,0.08);
