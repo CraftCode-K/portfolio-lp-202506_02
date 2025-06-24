@@ -1,0 +1,166 @@
+html, body {
+  margin: 0; padding: 0;
+  width: 100vw; height: 100vh;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  background: #fff;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw; height: 100vh;
+}
+
+.sp-frame {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
+  z-index: 1;
+}
+
+.bg-img {
+  position: absolute;
+  left: 0; top: 0;
+  width: 375px; height: 812px;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header-wave {
+  position: absolute;
+  left: 0; top: 0;
+  width: 375px; height: 140px;
+  z-index: 1;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.try-title {
+  position: absolute;
+  left: 24px; top: 38px;
+  width: 196px; height: 38px;
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0; /* タイトル画像不要な場合は非表示 */
+}
+
+.stage-bar {
+  position: absolute;
+  left: 35px; top: 94px;
+  width: 292px; height: 51px;
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.question-box {
+  position: absolute;
+  left: 19px; top: 160px;
+  width: 338px; height: 92px;
+  z-index: 3;
+  object-fit: contain;
+  pointer-events: none;
+}
+.question-text {
+  position: absolute;
+  left: 0; right: 0; top: 188px;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  z-index: 4;
+  color: #222;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.birth-form {
+  position: absolute;
+  left: 0; right: 0; top: 302px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.birth-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.input-box {
+  width: 70px;
+  height: 48px;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 22px;
+  text-align: center;
+  outline: none;
+  margin: 0 2px;
+  appearance: none;
+  box-sizing: border-box;
+  transition: border 0.18s;
+}
+.input-box:focus {
+  border: 2px solid #57bbde;
+}
+
+.unit {
+  font-size: 18px;
+  color: #444;
+  margin: 0 4px;
+}
+
+.decide-btn {
+  margin-top: 48px;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 170px; height: 170px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decide-img {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.decide-text {
+  position: relative;
+  z-index: 2;
+  font-size: 36px;
+  font-weight: 500;
+  color: #222;
+  pointer-events: none;
+  text-align: center;
+}
+
+.error-message {
+  color: #e40000;
+  font-size: 16px;
+  text-align: center;
+  min-height: 24px;
+  margin-top: 8px;
+}
