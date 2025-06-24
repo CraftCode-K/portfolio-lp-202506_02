@@ -59,13 +59,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 4px;
-  z-index: 2;
+  margin-top: 12px;     /* お好みで調整 */
+  margin-bottom: 12px;  /* お好みで調整 */
 }
 .stage-img {
   width: 292px;
   height: 51px;
-  object-fit: contain;
+  object-fit: contain;      /* 切れ防止 */
   display: block;
   user-select: none;
   pointer-events: none;
