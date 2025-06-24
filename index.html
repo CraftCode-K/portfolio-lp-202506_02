@@ -2,14 +2,14 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=375,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>オーラ鑑定LP</title>
   <style>
     html, body {
       margin: 0; padding: 0;
       width: 100vw; height: 100vh;
       font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-      background: #eaf2ff; /* 好きな背景色でOK */
+      background: #eaf2ff;
       overflow: hidden;
       touch-action: manipulation;
     }
@@ -20,12 +20,12 @@
       align-items: center;
       justify-content: center;
     }
-    /* ▼ スマホ本体を中央に固定するフレーム */
+    /* ▼ スマホ本体枠（375x812固定！） */
     .sp-frame {
       position: relative;
       width: 375px;
-      height: 812px; /* スマホの実サイズ例：iPhoneX系 */
-      box-shadow: 0 0 48px rgba(0,0,0,0.12), 0 0 0 1px #ddd;
+      height: 812px;
+      box-shadow: 0 0 48px rgba(0,0,0,0.10), 0 0 0 1px #ddd;
       border-radius: 20px;
       overflow: hidden;
       background: #eaf2ff;
@@ -38,35 +38,32 @@
     .bg-img {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 375px;
+      height: 812px;
       z-index: 0;
       pointer-events: none;
-      object-fit: cover;
       user-select: none;
     }
     .container {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 375px; height: 812px;
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1;
-      /* 背景の上に出す */
     }
     .head-title {
-      width: 92%;
-      max-width: 340px;
-      margin-top: 38px;
+      width: 350px;
+      margin-top: 32px;
       z-index: 2;
       pointer-events: none;
       user-select: none;
     }
     .stone-area {
-      margin-top: 2vh;
-      margin-bottom: 14vh;
-      width: 80%;
-      max-width: 340px;
+      margin-top: 36px;      /* ← ここの値を変えると上下移動。調整どうぞ！ */
+      margin-bottom: 120px;  /* ← helpボタン分しっかり確保 */
+      width: 320px;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -74,8 +71,7 @@
       user-select: none;
     }
     .stone-img {
-      width: 100%;
-      max-width: 340px;
+      width: 320px;
       z-index: 1;
       pointer-events: auto;
       user-select: none;
@@ -86,8 +82,8 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 5.5%;
-      width: 266px; /* ゲージ画像幅に合わせる */
+      top: 26px;  /* ← stone.pngの上辺からpx指定で調整可 */
+      width: 266px;
       z-index: 3;
       display: flex;
       flex-direction: column;
@@ -95,15 +91,15 @@
       pointer-events: none;
     }
     .stone-gage-bar {
-      width: 100%;
-      height: 37px;  /* ゲージ画像高さに合わせる */
+      width: 266px;
+      height: 37px;
       overflow: hidden;
       border-radius: 8px;
       background: rgba(0,0,0,0.08);
       position: relative;
     }
     .gage-img {
-      width: 100%;
+      width: 266px;
       height: 37px;
       object-fit: cover;
       position: absolute;
@@ -131,7 +127,7 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 12px;
+      bottom: 32px; /* 画面下部からしっかり余白 */
       background: none;
       border: none;
       padding: 0;
@@ -148,17 +144,6 @@
     .help-btn img {
       width: 100%; height: 100%;
       display: block;
-    }
-    /* PCでスマホ幅より狭い場合も見やすく */
-    @media (max-width: 400px) {
-      .sp-frame {
-        width: 100vw !important;
-        height: 100vh !important;
-        border-radius: 0;
-        box-shadow: none;
-      }
-      .gage-area { width: 80vw; }
-      .stone-gage-bar, .gage-img { height: 16px; }
     }
   </style>
 </head>
