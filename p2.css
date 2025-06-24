@@ -59,15 +59,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 8px; /* 調整OK */
+  margin-top: 8px;
   margin-bottom: 12px;
-  /* height, overflowは書かない！ */
+  position: relative;   /* 追加 */
+  z-index: 10;          /* 追加！ ←最前面に */
 }
+
 .stage-img {
   width: 292px;
-  height: auto;       /* ここもauto */
+  height: auto;
   object-fit: contain;
   display: block;
+  position: relative;   /* 念のため指定（親のz-indexが効くように） */
+  z-index: 10;          /* 追加！ */
 }
 
 
