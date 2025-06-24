@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>お試し鑑定：生年月日入力</title>
   <link rel="stylesheet" href="p2.css">
 </head>
@@ -12,6 +12,8 @@
     <img class="title-img" src="images/p2/try_judge.png" alt="">
     <img class="progress-img" src="images/p2/stage1.png" alt="">
     <img class="question-img" src="images/p2/question1.png" alt="">
+
+    <!-- 入力欄・ボタンのみHTML -->
     <form class="form-area" id="birthForm" autocomplete="off">
       <div class="birth-inputs">
         <input type="number" id="year" min="1900" max="2099" value="1980" required>
@@ -22,8 +24,8 @@
         <span class="unit">日</span>
       </div>
       <div class="error-message" id="errorMessage"></div>
-      <button type="submit" class="decide-btn">
-        <img src="images/p2/stone_decide.png" alt="決定">
+      <button type="submit" class="decide-btn" aria-label="決定">
+        <img src="images/p2/stone_decide.png" alt="">
       </button>
     </form>
   </div>
