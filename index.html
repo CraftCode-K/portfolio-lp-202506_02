@@ -9,46 +9,63 @@
       margin: 0; padding: 0;
       width: 100vw; height: 100vh;
       font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-      background: #eaf2ff;
+      background: #eaf2ff; /* 好きな背景色でOK */
       overflow: hidden;
       touch-action: manipulation;
     }
     body {
-      position: relative;
-      min-height: 100vh;
-      width: 100vw;
+      width: 100vw; height: 100vh;
+      min-height: 100vh; min-width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    /* ★ 背景は画面中央に縦長でピッタリ固定！ */
+    /* ▼ スマホ本体を中央に固定するフレーム */
+    .sp-frame {
+      position: relative;
+      width: 375px;
+      height: 812px; /* スマホの実サイズ例：iPhoneX系 */
+      box-shadow: 0 0 48px rgba(0,0,0,0.12), 0 0 0 1px #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #eaf2ff;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
     .bg-img {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%; height: 100%;
       z-index: 0;
       pointer-events: none;
+      object-fit: cover;
+      user-select: none;
     }
-
     .container {
-      position: relative;
-      width: 100vw;
-      min-height: 100vh;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1;
+      /* 背景の上に出す */
     }
     .head-title {
-      width: 92vw;
-      max-width: 417px;
+      width: 92%;
+      max-width: 340px;
       margin-top: 38px;
       z-index: 2;
       pointer-events: none;
       user-select: none;
     }
     .stone-area {
-      margin-top: 2vh;        /* ← 小さくして上へ */
-      margin-bottom: 16vh;    /* ヘルプと重ならない余白 */
-      width: 80vw;
+      margin-top: 2vh;
+      margin-bottom: 14vh;
+      width: 80%;
       max-width: 340px;
       position: relative;
       display: flex;
@@ -69,9 +86,8 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 15%;  /* ← パワーストーン上辺からの距離。赤線位置に微調整OK */
-      width: 266px;
-      max-width: 220px;
+      top: 5.5%;
+      width: 266px; /* ゲージ画像幅に合わせる */
       z-index: 3;
       display: flex;
       flex-direction: column;
@@ -79,23 +95,23 @@
       pointer-events: none;
     }
     .stone-gage-bar {
-      width: 150%;    /* ゲージ横幅（必要なら100%へ） */
-      height: 40px;   /* ゲージ縦幅 */
+      width: 100%;
+      height: 37px;  /* ゲージ画像高さに合わせる */
       overflow: hidden;
       border-radius: 8px;
       background: rgba(0,0,0,0.08);
       position: relative;
     }
     .gage-img {
-      width: 100%;    /* 画像そのものにピッタリ重ねる */
-      height: 40px;  
+      width: 100%;
+      height: 37px;
       object-fit: cover;
       position: absolute;
       left: 0; top: 0;
       transition: clip-path 0.15s;
       z-index: 2;
       pointer-events: none;
-      clip-path: inset(0 100% 0 0); /* 初期幅ゼロ */
+      clip-path: inset(0 100% 0 0);
     }
     .gage-img.show {
       clip-path: inset(0 0 0 0);
@@ -112,10 +128,10 @@
       touch-action: manipulation;
     }
     .help-btn {
-      position: fixed;
+      position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: calc(env(safe-area-inset-bottom,0) + 5px); /* iPhone下部にもギリギリ */
+      bottom: 12px;
       background: none;
       border: none;
       padding: 0;
@@ -133,41 +149,44 @@
       width: 100%; height: 100%;
       display: block;
     }
-    @media (max-width: 480px) {
-      .head-title { width: 97vw; }
-      .stone-area { width: 97vw; }
+    /* PCでスマホ幅より狭い場合も見やすく */
+    @media (max-width: 400px) {
+      .sp-frame {
+        width: 100vw !important;
+        height: 100vh !important;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .gage-area { width: 80vw; }
+      .stone-gage-bar, .gage-img { height: 16px; }
     }
   </style>
 </head>
 <body>
-  <!-- 背景画像 -->
-  <img class="bg-img" src="images/p1/bg.png" alt="背景画像" draggable="false">
+  <div class="sp-frame">
+    <!-- 背景画像 -->
+    <img class="bg-img" src="images/p1/bg.png" alt="背景画像" draggable="false">
 
-  <div class="container">
-    <!-- タイトル画像 -->
-    <img class="head-title" src="images/p1/head_title.png" alt="これからの人生の転機をオーラ鑑定で占います" draggable="false">
+    <div class="container">
+      <!-- タイトル画像 -->
+      <img class="head-title" src="images/p1/head_title.png" alt="これからの人生の転機をオーラ鑑定で占います" draggable="false">
 
-    <!-- パワーストーンエリア -->
-    <div class="stone-area">
-      <!-- パワーストーン画像自体がボタン -->
-      <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
-
-      <!-- ゲージ（パワーストーン上部に重ねる） -->
-      <div class="gage-area">
-        <div class="stone-gage-bar">
-          <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
+      <!-- パワーストーンエリア -->
+      <div class="stone-area">
+        <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
+        <div class="gage-area">
+          <div class="stone-gage-bar">
+            <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
+          </div>
         </div>
+        <button class="stone-btn-overlay" id="stoneBtn" aria-label="パワーストーンを長押ししてください"></button>
       </div>
-      <!-- ストーンの押下領域 -->
-      <button class="stone-btn-overlay" id="stoneBtn" aria-label="パワーストーンを長押ししてください"></button>
     </div>
+    <!-- ヘルプボタン -->
+    <button class="help-btn" onclick="alert('ヘルプ画面（仮）')">
+      <img src="images/p1/help_btn.png" alt="ヘルプ">
+    </button>
   </div>
-
-  <!-- ヘルプボタン -->
-  <button class="help-btn" onclick="alert('ヘルプ画面（仮）')">
-    <img src="images/p1/help_btn.png" alt="ヘルプ">
-  </button>
-
   <script>
     // ゲージアニメーション
     const stoneBtn = document.getElementById('stoneBtn');
