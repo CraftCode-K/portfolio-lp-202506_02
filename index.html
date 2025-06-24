@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=375,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <title>オーラ鑑定LP</title>
+  <title>オーラ鑑定LP - 完成形</title>
   <style>
     html, body {
       height: 100%;
@@ -37,10 +37,9 @@
       z-index: 1;
     }
     .head-title {
-      width: 90vw;
-      max-width: 420px;
-      margin-top: 28px;
-      margin-bottom: 2vh;
+      width: 92vw;
+      max-width: 417px;
+      margin-top: 38px;
       z-index: 2;
       pointer-events: none;
       user-select: none;
@@ -56,9 +55,15 @@
       flex-direction: column;
       user-select: none;
     }
+    .stone-img {
+      width: 100%; max-width: 340px; z-index: 1;
+      pointer-events: auto;
+      user-select: none;
+      touch-action: manipulation;
+    }
     .gage-area {
       position: absolute;
-      top: 6%; /* パワーストーン画像の上部付近 */
+      top: 58%; /* ストーン画像の中央よりやや下、「押してください」テキスト直上 */
       left: 50%;
       transform: translate(-50%, 0);
       width: 70%;
@@ -75,7 +80,7 @@
       height: 16px;
       overflow: hidden;
       border-radius: 8px;
-      background: rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.08);
     }
     .gage-img {
       width: 100%; height: 16px;
@@ -91,6 +96,14 @@
       clip-path: inset(0 0 0 0);
       transition: clip-path 0.2s;
     }
+    .button-text {
+      margin-top: 68%; /* パワーストーン画像内の下部に重なるよう調整 */
+      width: 95%; max-width: 269px;
+      z-index: 4;
+      pointer-events: none;
+      position: absolute;
+      top: 70%; left: 50%; transform: translate(-50%, 0);
+    }
     .stone-btn-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -101,19 +114,15 @@
       outline: none;
       touch-action: manipulation;
     }
-    .stone-img {
-      width: 100%; max-width: 340px; z-index: 1;
-      pointer-events: auto;
-      user-select: none;
-      touch-action: manipulation;
-    }
     .help-btn {
       position: fixed;
-      bottom: 24px; left: 50%; transform: translateX(-50%);
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: max(3vh, 20px);
       background: none;
       border: none;
       padding: 0;
-      z-index: 10;
+      z-index: 20;
       cursor: pointer;
       width: 118px;
       height: 46px;
@@ -127,14 +136,9 @@
       width: 100%; height: 100%;
       display: block;
     }
-    /* スマホ縦レイアウトのみ意識。PCレイアウトや回転は考慮なし */
-    @media (min-width: 481px) {
-      body, html {
-        min-width: 375px;
-        max-width: 430px;
-        margin: 0 auto;
-      }
-      .container { min-width: 375px; max-width: 430px; }
+    @media (max-width: 480px) {
+      .head-title { width: 97vw; }
+      .stone-area { width: 97vw; }
     }
   </style>
 </head>
@@ -148,14 +152,19 @@
 
     <!-- パワーストーンエリア -->
     <div class="stone-area">
-      <!-- ゲージ -->
+      <!-- パワーストーン画像自体がボタン -->
+      <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
+
+      <!-- ゲージ（パワーストーン内やや下に配置） -->
       <div class="gage-area">
         <div class="stone-gage-bar">
           <img id="gageImg" class="gage-img" src="images/p1/stone_gage.png" alt="ゲージ">
         </div>
       </div>
-      <!-- パワーストーン画像自体がボタン -->
-      <img class="stone-img" id="stoneImg" src="images/p1/stone.png" alt="パワーストーン" draggable="false">
+      <!-- テキスト画像（「パワーストーンを押してください」） -->
+      <img class="button-text" src="images/p1/button_text.png" alt="パワーストーンを押してください" draggable="false">
+
+      <!-- ストーンの押下領域 -->
       <button class="stone-btn-overlay" id="stoneBtn" aria-label="パワーストーンを長押ししてください"></button>
     </div>
   </div>
@@ -188,8 +197,8 @@
           setGage(1);
           clearInterval(interval);
           setTimeout(() => {
-            // 次ページ遷移
-            window.location.href = "next.html"; // 遷移先は必要に応じて修正
+            // 次ページ遷移（必要に応じて変更）
+            window.location.href = "next.html";
           }, 150);
         } else {
           setGage(progress);
@@ -203,7 +212,7 @@
       gageImg.classList.remove('show');
     }
 
-    // タッチ・マウス両対応（スマホ重視）
+    // タッチ・マウス両対応
     stoneBtn.addEventListener('touchstart', e => {
       e.preventDefault();
       startGage();
