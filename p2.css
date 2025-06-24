@@ -2,26 +2,23 @@ html, body {
   margin: 0; padding: 0;
   width: 100vw; height: 100vh;
   background: #fff;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-  overflow: hidden;
 }
 body {
+  width: 100vw; height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw; height: 100vh;
 }
 .sp-frame {
   position: relative;
   width: 375px;
   height: 812px;
   background: #fff;
-  overflow: hidden;
   border-radius: 16px;
-  box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
+  box-shadow: 0 2px 20px 0 rgba(50,50,80,0.08);
+  overflow: hidden;
+  margin: auto;
 }
-
-/* 背景 */
 .bg-img {
   position: absolute;
   left: 0; top: 0;
@@ -29,18 +26,13 @@ body {
   object-fit: cover;
   z-index: 0;
 }
-
-/* タイトル画像（グラデ含む最上部） */
 .title-img {
   position: absolute;
   left: 0; top: 0;
   width: 375px; height: 108px;
   z-index: 1;
   object-fit: cover;
-  pointer-events: none;
 }
-
-/* 進行状況バー（5玉+三角） */
 .progress-img {
   position: absolute;
   left: 38px; top: 72px;
@@ -48,8 +40,6 @@ body {
   z-index: 2;
   object-fit: contain;
 }
-
-/* 設問画像（「より正確に…」含む） */
 .question-img {
   position: absolute;
   left: 19px; top: 140px;
@@ -57,8 +47,6 @@ body {
   z-index: 3;
   object-fit: contain;
 }
-
-/* 生年月日入力欄 */
 .form-area {
   position: absolute;
   left: 0; right: 0;
@@ -69,7 +57,6 @@ body {
   align-items: center;
   z-index: 10;
 }
-
 .birth-inputs {
   width: 320px;
   display: flex;
@@ -77,7 +64,6 @@ body {
   align-items: center;
   gap: 10px;
 }
-
 .birth-inputs input {
   width: 72px;
   height: 48px;
@@ -99,7 +85,6 @@ body {
   font-size: 18px;
   color: #444;
 }
-
 .error-message {
   color: #e40000;
   font-size: 16px;
@@ -107,7 +92,6 @@ body {
   min-height: 24px;
   margin: 10px 0 0 0;
 }
-
 .decide-btn {
   margin-top: 48px;
   background: none;
