@@ -21,18 +21,13 @@
     /* ★ 背景は画面中央に縦長でピッタリ固定！ */
     .bg-img {
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 0; left: 0;
+      width: 100vw;
       height: 100vh;
-      width: auto;
-      min-width: 100vw;
-      min-height: 100vh;
-      transform: translate(-50%, -50%);
       z-index: 0;
       pointer-events: none;
-      object-fit: cover;
-      background: #eaf2ff;
     }
+
     .container {
       position: relative;
       width: 100vw;
