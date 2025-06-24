@@ -1,56 +1,44 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('birthForm');
+// --- 入力バリデーション & 決定ボタン制御 ---
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('birthdayForm');
   const yearInput = document.getElementById('year');
   const monthInput = document.getElementById('month');
   const dayInput = document.getElementById('day');
-  const errorMessage = document.getElementById('errorMessage');
 
-  // デフォルト日付
-  yearInput.value = 1980;
-  monthInput.value = 1;
-  dayInput.value = 1;
+  // 日付が有効かチェック
+  function isValidDate(y, m, d) {
+    if (!y || !m || !d) return false;
+    m = Number(m); d = Number(d);
+    const date = new Date(Number(y), m - 1, d);
+    return (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d);
+  }
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const year = Number(yearInput.value);
-    const month = Number(monthInput.value);
-    const day = Number(dayInput.value);
-
-    // 入力バリデーション
-    if (!year || !month || !day) {
-      showError('すべて入力してください');
-      return;
-    }
-    if (year < 1900 || year > 2099) {
-      showError('年は1900〜2099で入力してください');
-      return;
-    }
-    if (month < 1 || month > 12) {
-      showError('月は1〜12で入力してください');
-      return;
-    }
-    if (day < 1 || day > 31) {
-      showError('日付が不正です');
-      return;
-    }
-    // 日付の妥当性
-    if (!isValidDate(year, month, day)) {
-      showError('存在しない日付です');
-      return;
-    }
-    // 通過時は値を保存
-    const birth = { year, month, day };
-    localStorage.setItem('birth', JSON.stringify(birth));
-    // 画面遷移
-    window.location.href = "p3.html";
+  // 入力時、最大桁数制限
+  yearInput.addEventListener('input', () => {
+    if (yearInput.value.length > 4) yearInput.value = yearInput.value.slice(0, 4);
+  });
+  monthInput.addEventListener('input', () => {
+    if (monthInput.value.length > 2) monthInput.value = monthInput.value.slice(0, 2);
+    if (Number(monthInput.value) > 12) monthInput.value = 12;
+  });
+  dayInput.addEventListener('input', () => {
+    if (dayInput.value.length > 2) dayInput.value = dayInput.value.slice(0, 2);
+    if (Number(dayInput.value) > 31) dayInput.value = 31;
   });
 
-  function showError(msg) {
-    errorMessage.textContent = msg;
-  }
-
-  function isValidDate(y, m, d) {
-    const dt = new Date(y, m - 1, d);
-    return dt.getFullYear() === y && (dt.getMonth() + 1) === m && dt.getDate() === d;
-  }
+  // サブミット時
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const y = yearInput.value, m = monthInput.value, d = dayInput.value;
+    if (!isValidDate(y, m, d)) {
+      alert("正しい日付を入力してください");
+      return;
+    }
+    // --- 遷移先を変更する場合はここ ---
+    // 入力値はlocalStorage等で保存しておくと他ページで参照可能
+    localStorage.setItem("birthYear", y);
+    localStorage.setItem("birthMonth", m);
+    localStorage.setItem("birthDay", d);
+    window.location.href = "p3.html"; // 次の質問ページへ
+  });
 });
