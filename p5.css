@@ -1,0 +1,80 @@
+/* 基本設定 */
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* 全体を囲むラッパー(375x812px) */
+#wrapper {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+/* 画像の基本設定 */
+img {
+    pointer-events: none;
+    vertical-align: bottom;
+}
+
+/* 背景のグラデーションを表示するレイヤー */
+.bg-header-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url('images/p5/bg_2.png') no-repeat center top;
+    background-size: cover;
+    z-index: 1;
+}
+
+/* --- 各要素の配置 --- */
+
+/* ヘッダー、ステージ、質問、選択肢をグラデーションより手前に表示 */
+.header-area,
+.stage-area,
+.question-area,
+.choice-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* ヘッダー: お試し鑑定 */
+.header-area {
+    top: 65px;
+}
+
+/* ステージ */
+.stage-area {
+    top: 152px;
+}
+
+/* 質問 */
+.question-area {
+    top: 228px;
+}
+
+/* 選択肢エリア */
+.choice-area {
+    top: 410px;
+    width: 330px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 選択肢ボタンの画像サイズを固定 */
+.choice-area a img {
+    width: 150px; /* stone_married.png等の原寸に合わせる */
+    height: 150px;
+}
