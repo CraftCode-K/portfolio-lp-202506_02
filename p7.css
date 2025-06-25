@@ -25,7 +25,7 @@ body {
 .page-title {
     position: absolute;
     /* 変更: 表示位置を少し下に調整 */
-    top: 65px; 
+    top: 55px; 
     left: 0;
     width: 100%;
     text-align: center;
