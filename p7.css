@@ -14,7 +14,7 @@ body {
     width: 375px;
     height: 812px;
     margin: 0 auto;
-    background: url('images/p7/bg_3.png') no-repeat center top;
+    background: url('images/p7/bg_3_notext.png') no-repeat center top;
     background-size: cover;
     overflow: hidden;
 }
