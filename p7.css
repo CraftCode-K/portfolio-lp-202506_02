@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
     /* 変更: 背景画像は上部のみに表示し、引き伸ばさないようにする */
     background: url('images/p7/bg_3_notext.png') no-repeat center top;
-    background-size: contain; /* coverからcontainに変更 */
+    background-size: cover; /* coverからcontainに変更 */
     overflow: hidden;
 }
 
