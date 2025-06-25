@@ -1,29 +1,100 @@
-html, body {
-  margin: 0; padding: 0;
-  width: 100vw; height: 100vh;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-  background: #fff;
-  overflow: hidden;
-}
+/* 基本設定 */
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw; height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
-/* フレーム（375x812px、スマホ固定） */
-.sp-frame {
-  position: relative;
-  width: 375px;
-  height: 812px;
-  background: #fff;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
-  z-index: 1;
+/* 全体を囲むラッパー(375x812px) */
+#wrapper {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
 }
 
+/* 画像の基本設定 */
+img {
+    pointer-events: none;
+    vertical-align: bottom;
+}
+
+/* 背景のグラデーションを表示するレイヤー */
+.bg-header-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url('images/p2/bg_2.png') no-repeat center top;
+    background-size: cover;
+    z-index: 1;
+}
+
+/* --- 各要素の配置 --- */
+
+/* ヘッダー、ステージ、質問などをグラデーションより手前に表示 */
+.header-area,
+.stage-area,
+.question-area,
+.form-area,
+.submit-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.header-area { top: 65px; }
+.stage-area { top: 152px; }
+.question-area { top: 228px; }
+
+/* 入力フォームエリア */
+.form-area {
+    top: 350px; /* 完成形イメージに合わせて調整 */
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-area input {
+    width: 80px; /* 年の入力欄は少し広めに */
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    /* スピナー（上下矢印）を非表示にする */
+    -moz-appearance: textfield;
+}
+.form-area input::-webkit-outer-spin-button,
+.form-area input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.form-area input#month,
+.form-area input#day {
+    width: 50px; /* 月・日の入力欄 */
+}
+.form-area span {
+    margin: 0 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* 決定ボタンエリア */
+.submit-area {
+    top: 500px; /* 完成形イメージに合わせて調整 */
+}
+.submit-area img {
+    width: 150px; /* ボタン画像のサイズ調整 */
+    height: 150px;
+}
 /* 背景画像 */
 .bg-img {
   position: absolute;
