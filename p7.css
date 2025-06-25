@@ -33,10 +33,9 @@ img {
     left: 50%; /* まず左から50%の位置へ */
     transform: translateX(-50%); /* 次に要素の幅の半分だけ左に戻すことで、完全な中央揃えを実現 */
     z-index: 20;
-
     /* ★★★★★ この width の数値を変更するだけでOKです ★★★★★ */
     /* 例：大きくしたい場合は 300px、小さくしたい場合は 250px などに変更 */
-    width: 200px;
+    width: 280px;
 }
 
 .header-area img {
@@ -46,11 +45,10 @@ img {
     height: auto;
 }
 
-
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    top: 100px;
+    top: 120px;
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
@@ -92,10 +90,21 @@ img {
     font-weight: bold;
 }
 
+/* 白背景エリア - プライバシーポリシー以下の背景 */
+.white-background-bottom {
+    position: absolute;
+    top: 515px; /* プライバシーポリシーより少し上から開始 */
+    left: 0;
+    width: 100%;
+    height: 312px; /* 残りの高さをカバー */
+    background-color: #ffffff;
+    z-index: 5; /* 背景画像より上、他の要素より下 */
+}
+
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    top: 490px;
+    top: 510px;
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
@@ -103,14 +112,31 @@ img {
     color: #555;
     text-align: left;
     line-height: 1.5;
+    z-index: 10; /* 白背景より上に表示 */
+}
+
+/* プライバシーポリシーリンクのスタイル */
+.policy-link {
+    color: #007bff; /* 青色のリンク色 */
+    text-decoration: underline; /* 下線を表示 */
+    cursor: pointer; /* マウスオーバーで指マークを表示 */
+    pointer-events: auto; /* クリックを有効にする */
+    position: relative;
+    z-index: 15; /* より高いz-indexでクリック可能にする */
+}
+
+.policy-link:hover {
+    color: #0056b3; /* ホバー時の色を濃い青に */
+    text-decoration: underline; /* ホバー時も下線を維持 */
 }
 
 /* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    bottom: 160px;
+    bottom: 150px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10; /* 白背景より上に表示 */
 }
 
 .submit-area a {
@@ -129,13 +155,13 @@ img {
     left: 55%;
     transform: translateX(-50%);
     width: 100%; /* 中央揃えのために幅を確保 */
-
     /* ▼▼ テキスト用のスタイル ▼▼ */
     text-align: left; /* 文字を中央揃え */
     color: #ffc107;      /* 文字色を黄色系に */
     font-size: 16px;     /* 文字の大きさ */
     font-weight: bold;   /* 文字を太字に */
     line-height: 1.6;    /* 行と行の間の高さ */
-    /* 文字を読みやすくするために少しだけ影を付けます */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    /* 文字を読みやすくするために黒枠を追加 */
+    text-shadow: 0.5px 0.5px 0px #000, -0.5px 0.5px 0px #000, 0.5px -0.5px 0px #000, -0.5px -0.5px 0px #000;
+    z-index: 10; /* 白背景より上に表示 */
 }
