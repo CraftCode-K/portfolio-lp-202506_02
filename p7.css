@@ -2,42 +2,39 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    /* 変更: 背景を白にしておくことで、ラッパー背景画像の下地になる */
-    background-color: #fff; 
+    /* 変更: bodyに上部の背景画像と、その下の色を設定 */
+    background: url('images/p7/bg_3_notext.png') no-repeat center top;
+    background-color: #fff; /* 画像がないエリアやスクロールした先は白 */
+    background-size: 100% auto; /* 横幅いっぱいに表示 */
+
+    /* ユーザーによる文字選択を不可に */
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-/* 全体を囲むラッパー(375x812px) */
+/* 全体を囲むラッパー(375px) */
 #wrapper {
     position: relative;
     width: 375px;
-    height: 900px;
+    height: 812px; /* 高さはコンテンツに合わせて調整も可 */
     margin: 0 auto;
-    /* 変更: 背景画像は上部のみに表示し、引き伸ばさないようにする */
-    background: url('images/p7/bg_3_notext.png') no-repeat center top;
-    background-size: cover; /* coverからcontainに変更 */
     overflow: hidden;
+    /* 変更: ラッパー自体に背景色は不要 (bodyで設定するため) */
 }
 
 /* ページタイトル */
 .page-title {
     position: absolute;
-    /* 変更: 表示位置を少し下に調整 */
-    top: 50px; 
+    top: 65px; 
     left: 0;
     width: 100%;
     text-align: center;
     margin: 0;
-    
-    /* --- 文字のスタイル --- */
-    color: #4a380e; 
+    color: #4a380e;
     font-family: "MS Mincho", "Hiragino Mincho ProN", serif;
     font-weight: bold;
     font-size: 50px;
-    
-    /* 追加: 文字に白フチと影をつけ、立体感を出す */
     text-shadow: 
         2px 2px 3px rgba(0, 0, 0, 0.2), 
         0px 0px 5px #fff;
@@ -52,54 +49,61 @@ img {
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    /* 変更: タイトルとのバランスを見て位置を調整 */
     top: 145px; 
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
-    height: 400px;
+    /* 変更: 高さは内容に合わせて自動調整されるようにautoに */
+    height: auto; 
+    /* ★★★追加: これが最も重要。ボックスに白い背景と枠線を設定★★★ */
+    background-color: #fff;
+    border: 3px solid #e0cda8; /* 枠の色を飾り枠に近づける */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 /* 飾り枠の背景画像 */
 .confirm-container .frame-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -19px;  /* 位置を微調整 */
+    left: -19px; /* 位置を微調整 */
+    width: 362px;  /* 大きさを微調整 */
+    height: auto;
     z-index: 1;
 }
 /* 表示内容のエリア */
 .confirm-content {
     position: relative;
     z-index: 10;
-    padding: 40px 30px;
+    padding: 30px 25px; /* 内側の余白を調整 */
     box-sizing: border-box;
-    /* 変更: 文字色をタイトルと合わせて統一感を出す */
-    color: #4a380e;
+    color: #333; /* 文字色を黒に */
     text-align: center;
 }
 .confirm-content h3 {
     margin-top: 0;
+    margin-bottom: 20px; /* 見出し下の余白 */
     font-size: 20px;
     font-weight: bold;
+    color: #4a380e;
 }
 .confirm-list {
-    /* 変更: 見出しとの余白を少し詰める */
-    margin-top: 20px;
+    margin-top: 0;
     text-align: left;
 }
 .confirm-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 18px;
-    /* 変更: 項目間の余白を詰めて密度を上げる */
-    padding: 8px 0;
+    padding: 12px 0; /* 項目間の余白を調整 */
+    border-bottom: 1px solid #eee; /* 区切り線を追加 */
+}
+.confirm-item:last-child {
+    border-bottom: none; /* 最後の項目の区切り線は消す */
 }
 .confirm-item .label {
     font-weight: normal;
     white-space: pre;
-    /* 追加: ラベルの文字間隔を少し広げて見やすくする */
-    letter-spacing: 1px;
+    color: #555;
 }
 .confirm-item .value {
     font-weight: bold;
@@ -108,14 +112,13 @@ img {
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    /* 変更: 確認ボックスの下に配置されるように位置を調整 */
-    top: 560px;
+    /* 変更: 位置を鑑定ボタンの上に調整 */
+    bottom: 190px;
     left: 50%;
     transform: translateX(-50%);
-    width: 320px;
+    width: 330px;
     font-size: 11px;
-    /* 変更: 文字色を少し濃くして読みやすくする */
-    color: #333; 
+    color: #555;
     text-align: center;
     line-height: 1.5;
 }
@@ -123,8 +126,8 @@ img {
 /* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    /* 変更: 位置を微調整 */
-    bottom: 130px;
+    /* 変更: 位置を再調整 */
+    bottom: 110px; 
     left: 50%;
     transform: translateX(-50%);
 }
@@ -139,20 +142,15 @@ img {
 /* ボタン下メッセージ */
 .message-area {
     position: absolute;
-    /* 変更: 位置を微調整 */
-    bottom: 95px;
-    left: 0; /* 変更: 中央寄せのために left:0, right:0 を使う方法もあるが、今回はtransformを維持 */
-    right: 0;
-    margin: 0 auto;
+    /* 変更: 位置を再調整 */
+    bottom: 70px; 
     width: 100%;
     text-align: center;
 }
-
-/* 追加: ボタン下メッセージのスタイルを定義 */
 .message-area p {
     margin: 0;
-    color: #c78f00; /* 画像に近い黄色系の色 */
+    color: #c78f00;
     font-weight: bold;
     font-size: 13px;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* 少しだけ明るい影をつけて読みやすくする */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
