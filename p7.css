@@ -2,12 +2,12 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    /* 変更: bodyに上部の背景画像と、その下の色を設定 */
+    /* 変更: 背景画像のサイズ指定をcoverにし、画面全体を覆うようにする */
     background: url('images/p7/bg_3.png') no-repeat center top;
-    background-color: #fff; /* 画像がないエリアやスクロールした先は白 */
-    background-size: 100% auto; /* 横幅いっぱいに表示 */
+    background-size: cover;
+    background-attachment: fixed; /* 背景をスクロールに追従させない */
+    background-color: #f0f0f0; /* 背景画像が読み込まれない場合の色 */
 
-    /* ユーザーによる文字選択を不可に */
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -17,10 +17,9 @@ body {
 #wrapper {
     position: relative;
     width: 375px;
-    height: 812px; /* 高さはコンテンツに合わせて調整も可 */
+    height: 812px; 
     margin: 0 auto;
     overflow: hidden;
-    /* 変更: ラッパー自体に背景色は不要 (bodyで設定するため) */
 }
 
 /* ページタイトル */
@@ -53,19 +52,18 @@ img {
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
-    /* 変更: 高さは内容に合わせて自動調整されるようにautoに */
     height: auto; 
-    /* ★★★追加: これが最も重要。ボックスに白い背景と枠線を設定★★★ */
     background-color: #fff;
-    border: 3px solid #e0cda8; /* 枠の色を飾り枠に近づける */
+    border: 3px solid #e0cda8;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* 角を丸くする */
 }
 /* 飾り枠の背景画像 */
 .confirm-container .frame-bg {
     position: absolute;
-    top: -19px;  /* 位置を微調整 */
-    left: -19px; /* 位置を微調整 */
-    width: 362px;  /* 大きさを微調整 */
+    top: -19px;
+    left: -19px;
+    width: 362px;
     height: auto;
     z-index: 1;
 }
@@ -73,14 +71,14 @@ img {
 .confirm-content {
     position: relative;
     z-index: 10;
-    padding: 30px 25px; /* 内側の余白を調整 */
+    padding: 30px 25px;
     box-sizing: border-box;
-    color: #333; /* 文字色を黒に */
+    color: #333;
     text-align: center;
 }
 .confirm-content h3 {
     margin-top: 0;
-    margin-bottom: 20px; /* 見出し下の余白 */
+    margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold;
     color: #4a380e;
@@ -94,11 +92,11 @@ img {
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
-    padding: 12px 0; /* 項目間の余白を調整 */
-    border-bottom: 1px solid #eee; /* 区切り線を追加 */
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
 }
 .confirm-item:last-child {
-    border-bottom: none; /* 最後の項目の区切り線は消す */
+    border-bottom: none;
 }
 .confirm-item .label {
     font-weight: normal;
@@ -109,11 +107,15 @@ img {
     font-weight: bold;
 }
 
+/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+   変更点②：画面下部の３つの要素の位置を調整
+   bottomの値を小さくして、より画面の下に配置されるようにします。
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    /* 変更: 位置を鑑定ボタンの上に調整 */
-    bottom: 190px;
+    bottom: 160px; /* 変更: bottomの値を調整 */
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
@@ -123,11 +125,10 @@ img {
     line-height: 1.5;
 }
 
-/* 鑑定スタートボタン */
+/* 鑑定スタートボタン (message_start.png) */
 .submit-area {
     position: absolute;
-    /* 変更: 位置を再調整 */
-    bottom: 110px; 
+    bottom: 85px; /* 変更: bottomの値を調整 */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -139,11 +140,10 @@ img {
     height: auto;
 }
 
-/* ボタン下メッセージ */
+/* ボタン下メッセージ (message_go.png) */
 .message-area {
     position: absolute;
-    /* 変更: 位置を再調整 */
-    bottom: 70px; 
+    bottom: 50px; /* 変更: bottomの値を調整 */
     width: 100%;
     text-align: center;
 }
