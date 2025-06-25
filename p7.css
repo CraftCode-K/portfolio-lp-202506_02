@@ -19,6 +19,25 @@ body {
     overflow: hidden;
 }
 
+/* ↓↓ このスタイルを丸ごと追加 ↓↓ */
+/* ページタイトル */
+.page-title {
+    position: absolute;
+    top: 40px; /* 表示位置を調整 */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    
+    /* --- 文字のスタイル --- */
+    color: #4a380e; /* 文字色を調整（元の画像に近い色） */
+    font-family: "MS Mincho", "Hiragino Mincho ProN", serif; /* 書体を明朝体などに指定 */
+    font-weight: bold;
+    
+    /* ★★★★★ ここでお好みのサイズに変更できます ★★★★★ */
+    font-size: 32px; 
+}
+
 /* 画像の基本設定 */
 img {
     pointer-events: none;
