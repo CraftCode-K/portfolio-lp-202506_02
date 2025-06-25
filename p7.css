@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: sans-serif;
     /* 変更: 背景画像のサイズ指定をcoverにし、画面全体を覆うようにする */
-    background: url('images/p7/bg_3.png') no-repeat center top;
+    background: url('images/p7/bg_3_notext.png') no-repeat center top;
     background-size: cover;
     background-attachment: fixed; /* 背景をスクロールに追従させない */
     background-color: #f0f0f0; /* 背景画像が読み込まれない場合の色 */
