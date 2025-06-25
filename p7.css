@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: sans-serif;
     /* 変更: bodyに上部の背景画像と、その下の色を設定 */
-    background: url('images/p7/bg_3_notext.png') no-repeat center top;
+    background: url('images/p7/bg_3.png') no-repeat center top;
     background-color: #fff; /* 画像がないエリアやスクロールした先は白 */
     background-size: 100% auto; /* 横幅いっぱいに表示 */
 
