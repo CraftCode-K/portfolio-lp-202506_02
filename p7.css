@@ -1,12 +1,17 @@
 /* 基本設定 */
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    /* height: 100%; はwrapperの高さに影響する場合があるので一旦削除 */
     font-family: sans-serif;
-    /* 変更: 背景画像のサイズ指定をcoverにし、画面全体を覆うようにする */
+}
+
+body {
     background: url('images/p7/bg_3_notext.png') no-repeat center top;
     background-size: cover;
-    background-attachment: fixed; /* 背景をスクロールに追従させない */
-    background-color: #f0f0f0; /* 背景画像が読み込まれない場合の色 */
+    background-attachment: fixed;
+    background-color: #f0f0f0;
 
     user-select: none;
     -webkit-user-select: none;
@@ -20,12 +25,13 @@ body {
     height: 812px; 
     margin: 0 auto;
     overflow: hidden;
+    box-sizing: border-box; 
 }
 
 /* ページタイトル */
 .page-title {
     position: absolute;
-    top: 65px; 
+    top: 55px;
     left: 0;
     width: 100%;
     text-align: center;
@@ -48,7 +54,7 @@ img {
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    top: 145px; 
+    top: 135px;
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
@@ -56,7 +62,7 @@ img {
     background-color: #fff;
     border: 3px solid #e0cda8;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; /* 角を丸くする */
+    border-radius: 8px;
 }
 /* 飾り枠の背景画像 */
 .confirm-container .frame-bg {
@@ -107,15 +113,12 @@ img {
     font-weight: bold;
 }
 
-/* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-   変更点②：画面下部の３つの要素の位置を調整
-   bottomの値を小さくして、より画面の下に配置されるようにします。
-★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+/* 画面下部の要素群 */
 
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    bottom: 160px; /* 変更: bottomの値を調整 */
+    bottom: 155px;
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
@@ -125,10 +128,10 @@ img {
     line-height: 1.5;
 }
 
-/* 鑑定スタートボタン (message_start.png) */
+/* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    bottom: 55px; /* 変更: bottomの値を調整 */
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -140,10 +143,10 @@ img {
     height: auto;
 }
 
-/* ボタン下メッセージ (message_go.png) */
+/* ボタン下メッセージ */
 .message-area {
     position: absolute;
-    bottom: 50px; /* 変更: bottomの値を調整 */
+    bottom: 45px;
     width: 100%;
     text-align: center;
 }
