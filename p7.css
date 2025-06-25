@@ -2,7 +2,8 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background-color: #fff;
+    /* 変更: 背景を白にしておくことで、ラッパー背景画像の下地になる */
+    background-color: #fff; 
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -14,28 +15,32 @@ body {
     width: 375px;
     height: 812px;
     margin: 0 auto;
+    /* 変更: 背景画像は上部のみに表示し、引き伸ばさないようにする */
     background: url('images/p7/bg_3_notext.png') no-repeat center top;
-    background-size: cover;
+    background-size: contain; /* coverからcontainに変更 */
     overflow: hidden;
 }
 
-/* ↓↓ このスタイルを丸ごと追加 ↓↓ */
 /* ページタイトル */
 .page-title {
     position: absolute;
-    top: 40px; /* 表示位置を調整 */
+    /* 変更: 表示位置を少し下に調整 */
+    top: 65px; 
     left: 0;
     width: 100%;
     text-align: center;
     margin: 0;
     
     /* --- 文字のスタイル --- */
-    color: #4a380e; /* 文字色を調整（元の画像に近い色） */
-    font-family: "MS Mincho", "Hiragino Mincho ProN", serif; /* 書体を明朝体などに指定 */
+    color: #4a380e; 
+    font-family: "MS Mincho", "Hiragino Mincho ProN", serif;
     font-weight: bold;
+    font-size: 50px;
     
-    /* ★★★★★ ここでお好みのサイズに変更できます ★★★★★ */
-    font-size: 50px; 
+    /* 追加: 文字に白フチと影をつけ、立体感を出す */
+    text-shadow: 
+        2px 2px 3px rgba(0, 0, 0, 0.2), 
+        0px 0px 5px #fff;
 }
 
 /* 画像の基本設定 */
@@ -44,11 +49,11 @@ img {
     vertical-align: bottom;
 }
 
-/* ↓↓ 確認ボックスの位置を調整 ↓↓ */
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    top: 100px; /* ヘッダーとかぶらないように開始位置を少し下げる */
+    /* 変更: タイトルとのバランスを見て位置を調整 */
+    top: 145px; 
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
@@ -69,7 +74,8 @@ img {
     z-index: 10;
     padding: 40px 30px;
     box-sizing: border-box;
-    color: #333;
+    /* 変更: 文字色をタイトルと合わせて統一感を出す */
+    color: #4a380e;
     text-align: center;
 }
 .confirm-content h3 {
@@ -78,18 +84,22 @@ img {
     font-weight: bold;
 }
 .confirm-list {
-    margin-top: 30px;
+    /* 変更: 見出しとの余白を少し詰める */
+    margin-top: 20px;
     text-align: left;
 }
 .confirm-item {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    padding: 10px 0;
+    /* 変更: 項目間の余白を詰めて密度を上げる */
+    padding: 8px 0;
 }
 .confirm-item .label {
     font-weight: normal;
     white-space: pre;
+    /* 追加: ラベルの文字間隔を少し広げて見やすくする */
+    letter-spacing: 1px;
 }
 .confirm-item .value {
     font-weight: bold;
@@ -98,12 +108,14 @@ img {
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    top: 530px;
+    /* 変更: 確認ボックスの下に配置されるように位置を調整 */
+    top: 560px;
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
     font-size: 11px;
-    color: #555;
+    /* 変更: 文字色を少し濃くして読みやすくする */
+    color: #333; 
     text-align: center;
     line-height: 1.5;
 }
@@ -111,7 +123,8 @@ img {
 /* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    bottom: 120px;
+    /* 変更: 位置を微調整 */
+    bottom: 130px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -126,7 +139,20 @@ img {
 /* ボタン下メッセージ */
 .message-area {
     position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
+    /* 変更: 位置を微調整 */
+    bottom: 95px;
+    left: 0; /* 変更: 中央寄せのために left:0, right:0 を使う方法もあるが、今回はtransformを維持 */
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+/* 追加: ボタン下メッセージのスタイルを定義 */
+.message-area p {
+    margin: 0;
+    color: #c78f00; /* 画像に近い黄色系の色 */
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* 少しだけ明るい影をつけて読みやすくする */
 }
