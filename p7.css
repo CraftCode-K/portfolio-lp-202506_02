@@ -25,14 +25,25 @@ img {
     vertical-align: bottom;
 }
 
+/* ↓↓ ヘッダーエリアのスタイルを追加 ↓↓ */
+.header-area {
+    position: absolute;
+    top: 40px; /* 位置を調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20; /* 他の要素より手前に表示 */
+}
+
+
+/* ↓↓ 確認ボックスの位置を調整 ↓↓ */
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    top: 100px; /* 位置を調整 */
+    top: 120px; /* ヘッダーとかぶらないように開始位置を少し下げる */
     left: 50%;
     transform: translateX(-50%);
-    width: 330px; /* 枠の幅を調整 */
-    height: 400px; /* 枠の高さを調整 */
+    width: 330px;
+    height: 400px;
 }
 /* 飾り枠の背景画像 */
 .confirm-container .frame-bg {
@@ -69,7 +80,7 @@ img {
 }
 .confirm-item .label {
     font-weight: normal;
-    white-space: pre; /* 性別と血液型の間のスペースを維持 */
+    white-space: pre;
 }
 .confirm-item .value {
     font-weight: bold;
@@ -78,7 +89,7 @@ img {
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    top: 530px; /* 位置を調整 */
+    top: 530px;
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
@@ -91,7 +102,7 @@ img {
 /* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    bottom: 120px; /* 位置を調整 */
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -99,14 +110,14 @@ img {
     display: block;
 }
 .submit-area img {
-    width: 330px; /* 画像のサイズを調整 */
+    width: 330px;
     height: auto;
 }
 
 /* ボタン下メッセージ */
 .message-area {
     position: absolute;
-    bottom: 80px; /* 位置を調整 */
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
 }
