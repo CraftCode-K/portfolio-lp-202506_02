@@ -13,7 +13,7 @@ body {
 #wrapper {
     position: relative;
     width: 375px;
-    height: 1000px;
+    height: 2000px;
     margin: 0 auto;
     /* 変更: 背景画像は上部のみに表示し、引き伸ばさないようにする */
     background: url('images/p7/bg_3_notext.png') no-repeat center top;
