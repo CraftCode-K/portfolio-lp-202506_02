@@ -1,46 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 既存の鑑定データをlocalStorageから取得（なければ新規作成）
-    let uranaiData = JSON.parse(localStorage.getItem('auraUranaiData')) || {};
+  const form = document.getElementById('birthForm');
+  const yearInput = document.getElementById('year');
+  const monthInput = document.getElementById('month');
+  const dayInput = document.getElementById('day');
+  const errorMessage = document.getElementById('errorMessage');
 
-    const yearInput = document.getElementById('year');
-    const monthInput = document.getElementById('month');
-    const dayInput = document.getElementById('day');
-    const submitBtn = document.getElementById('submit-btn');
+  // デフォルト日付
+  yearInput.value = 1980;
+  monthInput.value = 1;
+  dayInput.value = 1;
 
-    submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const year = Number(yearInput.value);
+    const month = Number(monthInput.value);
+    const day = Number(dayInput.value);
 
-        const year = yearInput.value.trim();
-        const month = monthInput.value.trim();
-        const day = dayInput.value.trim();
+    // 入力バリデーション
+    if (!year || !month || !day) {
+      showError('すべて入力してください');
+      return;
+    }
+    if (year < 1900 || year > 2099) {
+      showError('年は1900〜2099で入力してください');
+      return;
+    }
+    if (month < 1 || month > 12) {
+      showError('月は1〜12で入力してください');
+      return;
+    }
+    if (day < 1 || day > 31) {
+      showError('日付が不正です');
+      return;
+    }
+    // 日付の妥当性
+    if (!isValidDate(year, month, day)) {
+      showError('存在しない日付です');
+      return;
+    }
+    // 通過時は値を保存（例：localStorageに保存やグローバル変数でも可）
+    const birth = { year, month, day };
+    localStorage.setItem('birth', JSON.stringify(birth));
+    // 画面遷移（例：p3.html等へ）
+    window.location.href = "p3.html";
+  });
 
-        // --- バリデーション（入力チェック） ---
+  function showError(msg) {
+    errorMessage.textContent = msg;
+  }
 
-        // 1. 未入力チェック
-        if (year === '' || month === '' || day === '') {
-            alert('生年月日をすべて入力してください。');
-            return; // 処理を中断
-        }
+  function isValidDate(y, m, d) {
+    const dt = new Date(y, m - 1, d);
+    return dt.getFullYear() === y && (dt.getMonth() + 1) === m && dt.getDate() === d;
+  }
+});
 
-        // 2. 存在する日付かチェック
-        //    例: 2月30日や13月1日などを弾く
-        const date = new Date(year, month - 1, day); // 月は0から始まるため-1する
-        if (
-            date.getFullYear() !== Number(year) ||
-            date.getMonth() !== Number(month) - 1 ||
-            date.getDate() !== Number(day)
-        ) {
-            alert('正しい日付を入力してください。');
-            return; // 処理を中断
-        }
-        
-        // --- チェック通過後の処理 ---
-
-        // データを保存
-        uranaiData.birthdate = `${year}年${month}月${day}日`;
-        localStorage.setItem('auraUranaiData', JSON.stringify(uranaiData));
-
-        // 次のページ(p3.html)へ遷移
-        window.location.href = 'p3.html';
-    });
 });
