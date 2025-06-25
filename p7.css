@@ -13,7 +13,7 @@ body {
 #wrapper {
     position: relative;
     width: 375px;
-    height: 2000px;
+    height: 900px;
     margin: 0 auto;
     /* 変更: 背景画像は上部のみに表示し、引き伸ばさないようにする */
     background: url('images/p7/bg_3_notext.png') no-repeat center top;
@@ -25,7 +25,7 @@ body {
 .page-title {
     position: absolute;
     /* 変更: 表示位置を少し下に調整 */
-    top: 55px; 
+    top: 50px; 
     left: 0;
     width: 100%;
     text-align: center;
