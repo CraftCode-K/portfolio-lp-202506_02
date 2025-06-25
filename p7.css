@@ -123,6 +123,7 @@ img {
     pointer-events: auto; /* クリックを有効にする */
     position: relative;
     z-index: 15; /* より高いz-indexでクリック可能にする */
+    font-weight: bold;   /* 文字を太字に */
 }
 
 .policy-link:hover {
