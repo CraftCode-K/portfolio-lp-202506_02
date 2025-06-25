@@ -37,8 +37,6 @@ img {
 }
 
 /* --- 各要素の配置 --- */
-
-/* ヘッダー、ステージ、質問などをグラデーションより手前に表示 */
 .header-area,
 .stage-area,
 .question-area,
@@ -56,20 +54,19 @@ img {
 
 /* 入力フォームエリア */
 .form-area {
-    top: 350px; /* 完成形イメージに合わせて調整 */
+    top: 350px;
     width: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .form-area input {
-    width: 80px; /* 年の入力欄は少し広めに */
+    width: 80px;
     height: 45px;
     border: 1px solid #ccc;
     border-radius: 8px;
     text-align: center;
     font-size: 18px;
-    /* スピナー（上下矢印）を非表示にする */
     -moz-appearance: textfield;
 }
 .form-area input::-webkit-outer-spin-button,
@@ -79,7 +76,7 @@ img {
 }
 .form-area input#month,
 .form-area input#day {
-    width: 50px; /* 月・日の入力欄 */
+    width: 50px;
 }
 .form-area span {
     margin: 0 8px;
@@ -91,7 +88,17 @@ img {
 .submit-area {
     top: 500px; /* 完成形イメージに合わせて調整 */
 }
+
+/* 決定ボタンのリンク(aタグ)自体にサイズを指定 */
+.submit-area a {
+    display: block;  /* サイズを指定できるようにブロック要素へ変更 */
+    width: 150px;    /* 画像の幅と同じサイズを指定 */
+    height: 150px;   /* 画像の高さと同じサイズを指定 */
+    border-radius: 50%; /* 円形にクリック範囲を合わせる（見た目には影響なし）*/
+}
+
+/* 決定ボタンの画像 */
 .submit-area img {
-    width: 150px; /* ボタン画像のサイズ調整 */
-    height: 150px;
+    width: 100%;     /* 親要素(aタグ)のサイズに合わせる */
+    height: 100%;
 }
