@@ -128,7 +128,7 @@ img {
 /* 鑑定スタートボタン (message_start.png) */
 .submit-area {
     position: absolute;
-    bottom: 85px; /* 変更: bottomの値を調整 */
+    bottom: 55px; /* 変更: bottomの値を調整 */
     left: 50%;
     transform: translateX(-50%);
 }
