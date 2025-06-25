@@ -1,48 +1,23 @@
 /* 基本設定 */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* height: 100%; はwrapperの高さに影響する場合があるので一旦削除 */
-    font-family: sans-serif;
-}
-
 body {
-    background: url('images/p7/bg_3_notext.png') no-repeat center top;
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: #f0f0f0;
-
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fff;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-/* 全体を囲むラッパー(375px) */
+/* 全体を囲むラッパー(375x812px) */
 #wrapper {
     position: relative;
     width: 375px;
-    height: 812px; 
+    height: 812px;
     margin: 0 auto;
+    /* 背景画像（※文字なし版を想定） */
+    background: url('images/p7/bg_3_notext.png') no-repeat center top;
+    background-size: cover;
     overflow: hidden;
-    box-sizing: border-box; 
-}
-
-/* ページタイトル */
-.page-title {
-    position: absolute;
-    top: 55px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    color: #4a380e;
-    font-family: "MS Mincho", "Hiragino Mincho ProN", serif;
-    font-weight: bold;
-    font-size: 50px;
-    text-shadow: 
-        2px 2px 3px rgba(0, 0, 0, 0.2), 
-        0px 0px 5px #fff;
 }
 
 /* 画像の基本設定 */
@@ -51,78 +26,80 @@ img {
     vertical-align: bottom;
 }
 
+/* タイトル画像のスタイル */
+.header-area {
+    position: absolute;
+    top: 45px; /* ページ上部からの位置 */
+    left: 50%; /* まず左から50%の位置へ */
+    transform: translateX(-50%); /* 次に要素の幅の半分だけ左に戻すことで、完全な中央揃えを実現 */
+    z-index: 20;
+
+    /* ★★★★★ この width の数値を変更するだけでOKです ★★★★★ */
+    /* 例：大きくしたい場合は 300px、小さくしたい場合は 250px などに変更 */
+    width: 200px;
+}
+
+.header-area img {
+    /* 親要素(.header-area)の幅に合わせて、画像の幅を100%にする */
+    width: 100%;
+    /* 高さは幅に合わせて自動調整 */
+    height: auto;
+}
+
+
 /* 確認ボックスのコンテナ */
 .confirm-container {
     position: absolute;
-    top: 135px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     width: 330px;
-    height: auto; 
-    background-color: #fff;
-    border: 3px solid #e0cda8;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    height: 400px;
+    /* 背景に白背景一体型のフレーム画像を指定 */
+    background: url('images/p7/frame.png') no-repeat center center;
+    background-size: contain;
 }
-/* 飾り枠の背景画像 */
-.confirm-container .frame-bg {
-    position: absolute;
-    top: -19px;
-    left: -19px;
-    width: 362px;
-    height: auto;
-    z-index: 1;
-}
+
 /* 表示内容のエリア */
 .confirm-content {
     position: relative;
     z-index: 10;
-    padding: 30px 25px;
+    /* 画像内のタイトルを避けて内容が配置されるよう、paddingで調整 */
+    padding: 75px 35px 40px 35px;
     box-sizing: border-box;
     color: #333;
     text-align: center;
 }
-.confirm-content h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #4a380e;
-}
+
 .confirm-list {
-    margin-top: 0;
+    margin-top: 30px;
     text-align: left;
 }
+
 .confirm-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     font-size: 18px;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px 0;
 }
-.confirm-item:last-child {
-    border-bottom: none;
-}
+
 .confirm-item .label {
     font-weight: normal;
     white-space: pre;
-    color: #555;
 }
+
 .confirm-item .value {
     font-weight: bold;
 }
 
-/* 画面下部の要素群 */
-
 /* 注意書きエリア */
 .policy-area {
     position: absolute;
-    bottom: 225px;
+    top: 490px;
     left: 50%;
     transform: translateX(-50%);
-    width: 330px;
-    font-size: 12px;
+    width: 320px;
+    font-size: 11px;
     color: #555;
     text-align: left;
     line-height: 1.5;
@@ -131,13 +108,15 @@ img {
 /* 鑑定スタートボタン */
 .submit-area {
     position: absolute;
-    bottom: 140px;
+    bottom: 160px;
     left: 50%;
     transform: translateX(-50%);
 }
+
 .submit-area a {
     display: block;
 }
+
 .submit-area img {
     width: 330px;
     height: auto;
@@ -146,14 +125,17 @@ img {
 /* ボタン下メッセージ */
 .message-area {
     position: absolute;
-    bottom: 75px;
-    width: 100%;
-    text-align: center;
-}
-.message-area p {
-    margin: 0;
-    color: #c78f00;
-    font-weight: bold;
-    font-size: 13px;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    bottom: 70px; /* 表示位置を微調整 */
+    left: 55%;
+    transform: translateX(-50%);
+    width: 100%; /* 中央揃えのために幅を確保 */
+
+    /* ▼▼ テキスト用のスタイル ▼▼ */
+    text-align: left; /* 文字を中央揃え */
+    color: #ffc107;      /* 文字色を黄色系に */
+    font-size: 16px;     /* 文字の大きさ */
+    font-weight: bold;   /* 文字を太字に */
+    line-height: 1.6;    /* 行と行の間の高さ */
+    /* 文字を読みやすくするために少しだけ影を付けます */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
