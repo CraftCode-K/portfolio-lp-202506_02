@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>お試し鑑定 | 生年月日入力</title>
-  <link rel="stylesheet" href="p2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お試し鑑定 - 生年月日入力</title>
+    <link rel="stylesheet" href="p2.css">
 </head>
 <body>
-  <div class="sp-frame">
-    <!-- 背景 -->
-    <img class="bg-img" src="images/p2/bg_2.png" alt="背景" draggable="false">
-    <!-- お試し鑑定ロゴ -->
-    <div class="logo-area">
-      <img class="try-judge-img" src="images/p2/try_judge.png" alt="お試し鑑定ロゴ" draggable="false">
+
+    <div id="wrapper">
+
+        <div class="bg-header-gradient"></div>
+
+        <div class="header-area">
+            <img src="images/p2/try_judge.png" alt="お試し鑑定">
+        </div>
+
+        <div class="stage-area">
+            <img src="images/p2/stage2.png" alt="ステージ2">
+        </div>
+
+        <div class="question-area">
+            <img src="images/p2/question1.png" alt="より正確に占うために簡単な質問をします">
+        </div>
+
+        <div class="form-area">
+            <input type="number" id="year" placeholder="1990" pattern="\d*">
+            <span>年</span>
+            <input type="number" id="month" placeholder="1" pattern="\d*">
+            <span>月</span>
+            <input type="number" id="day" placeholder="1" pattern="\d*">
+            <span>日</span>
+        </div>
+
+        <div class="submit-area">
+            <a href="#" id="submit-btn">
+                <img src="images/p2/stone_decide.png" alt="決定">
+            </a>
+        </div>
+
     </div>
-    <!-- ステップバー -->
-    <div class="stage-area">
-      <img class="stage-img" src="images/p2/stage1.png" alt="ステージ1" draggable="false">
-    </div>
-    <!-- 質問バナー -->
-    <div class="question-area">
-      <img class="question-img" src="images/p2/question1.png" alt="より正確に占うために簡単な質問をします" draggable="false">
-    </div>
-    <!-- 生年月日入力フォーム -->
-    <form id="birthdayForm" autocomplete="off">
-      <div class="birthday-fields">
-        <input type="number" id="year" name="year" class="birth-input" value="1980" min="1900" max="2024" required>
-        <span class="birth-label">年</span>
-        <input type="number" id="month" name="month" class="birth-input" value="1" min="1" max="12" required>
-        <span class="birth-label">月</span>
-        <input type="number" id="day" name="day" class="birth-input" value="1" min="1" max="31" required>
-        <span class="birth-label">日</span>
-      </div>
-      <button type="submit" class="decide-btn" aria-label="決定">
-        <img src="images/p2/stone_decide.png" alt="決定">
-      </button>
-    </form>
-  </div>
-  <script src="p2.js"></script>
+
+    <script src="p2.js"></script>
 </body>
 </html>
