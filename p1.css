@@ -1,15 +1,19 @@
 html, body {
-  margin: 0; padding: 0;
-  width: 100vw; height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   background: #fff;
   overflow: hidden;
 }
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw; height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .sp-frame {
@@ -19,14 +23,16 @@ body {
   background: #fff;
   overflow: hidden;
   border-radius: 16px;
-  box-shadow: 0 2px 20px 0 rgba(50,50,80,0.07);
+  box-shadow: 0 2px 20px 0 rgba(50, 50, 80, 0.07);
   z-index: 1;
 }
 
 .bg-img {
   position: absolute;
-  left: 0; top: 0;
-  width: 375px; height: 812px;
+  left: 0;
+  top: 0;
+  width: 375px;
+  height: 812px;
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
@@ -61,7 +67,7 @@ body {
 .gage-area {
   position: absolute;
   left: 50%;
-  top: 180px; /* パワーストーンのちょうど上部（微調整OK） */
+  top: 180px;
   transform: translateX(-50%);
   width: 226px;
   height: 50px;
@@ -75,8 +81,7 @@ body {
 .stone-gage-bar {
   width: 250px;
   height: 37px;
-  background: 
-#e0e0e0;
+  background: #e0e0e0;
   border-radius: 2px;
   overflow: hidden;
   position: relative;
@@ -87,19 +92,15 @@ body {
   height: 37px;
   object-fit: cover;
   position: absolute;
-  left: 0; top: 0;
-  transition: clip-path 0.15s;
+  left: 0;
+  top: 0;
   z-index: 2;
   pointer-events: none;
-  clip-path: inset(0 100% 0 0); /* 初期幅ゼロ */
-}
-.gage-img.show {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.2s;
+  clip-path: inset(0 100% 0 0);
 }
 
 .stone-img {
-  margin-top: 110px; /* パワーストーン位置（微調整OK） */
+  margin-top: 110px;
   width: 340px;
   max-width: 90vw;
   z-index: 1;
@@ -118,7 +119,7 @@ body {
   width: 340px;
   height: 340px;
   z-index: 10;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   cursor: pointer;
   border: none;
   outline: none;
@@ -140,16 +141,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(80,80,80,0.10);
+  box-shadow: 0 2px 8px rgba(80, 80, 80, 0.10);
   touch-action: manipulation;
 }
 
 .help-btn img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
 
+/* ▼▼▼ 半透明の白い光が広がるエフェクト用のCSS ▼▼▼ */
+#flash-overlay {
+  visibility: hidden;
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vmax;
+  height: 100vmax;
+  z-index: 9999;
 
+  background: radial-gradient(circle at center, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+  
+  transform: translate(-50%, -50%) scale(0);
+}
 
-思考プロセスを表示
+#flash-overlay.active {
+  visibility: visible;
+  /* アニメーションを0.8秒に変更 */
+  animation: fill-light 0.8s ease-out forwards;
+}
+
+@keyframes fill-light {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 1;
+  }
+}
